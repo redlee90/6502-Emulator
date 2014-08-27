@@ -13,15 +13,15 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
 	private Button buttonAssemble;
 	private Button buttonRun;
 	private Button buttonReset;
 	private Button buttonHexdump;
-	private Button buttonDisassemble;
-	private Button buttonNotes;
 	private EditText codeInput;
+	private TextView information;
 	private Memory memory;
 	private Assembler assembler;
 
@@ -31,19 +31,18 @@ public class MainActivity extends Activity {
 
 		setContentView(R.layout.activity_main);
 		codeInput = (EditText) findViewById(R.id.codeInput);
+		information = (TextView) findViewById(R.id.info);
 		buttonAssemble = (Button) findViewById(R.id.buttonAssemble);
 		buttonRun = (Button) findViewById(R.id.buttonRun);
 		buttonReset = (Button) findViewById(R.id.buttonReset);
 		buttonHexdump = (Button) findViewById(R.id.buttonHexdump);
-		buttonDisassemble = (Button) findViewById(R.id.buttonDisassemble);
-		buttonNotes = (Button) findViewById(R.id.buttonNotes);
 
 		PPU ppu = new PPU(this);
 		RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
 		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
 				480, 480);
 		params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
-		params.addRule(RelativeLayout.BELOW, buttonNotes.getId());
+		params.addRule(RelativeLayout.BELOW, buttonHexdump.getId());
 		ppu.setLayoutParams(params);
 		ppu.setBackgroundColor(Color.BLUE);
 		relativeLayout.addView(ppu);
@@ -59,6 +58,9 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				assembler.assembleCode(codeInput.getText().toString());
+				if (assembler.assembleOK) {
+					information.setText("Assemble successfully");
+				}
 			}
 
 		});
@@ -85,37 +87,14 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				System.out.println("the size of code is "+assembler.size);
-				System.out.println(memory.cells[0x0600]);
-				System.out.println(memory.cells[0x0601]);
-				System.out.println(memory.cells[0x0602]);
-				System.out.println(memory.cells[0x0603]);
-				System.out.println(memory.cells[0x0604]);
-				//System.out.println(memory.cells[0x0605]);
-				//System.out.println(memory.cells[0x0606]);
-				//System.out.println(memory.cells[0x0607]);
-				//System.out.println(memory.cells[0x0608]);								
+				information.setText("the size of code is "+assembler.size+"\n");
+				for (int i=0;i<assembler.size;i++) {
+					information.append(memory.cells[0x600+i]+"\n");
+				}											
 			}
 
 		});
-
-		buttonDisassemble.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-
-			}
-
-		});
-
-		buttonNotes.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-
-			}
-
-		});
+	
 	}
 
 	@Override

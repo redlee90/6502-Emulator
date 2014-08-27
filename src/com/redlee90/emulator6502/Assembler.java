@@ -7,7 +7,7 @@ public class Assembler {
 
 	private int defaultPC = 0x600;
 	public int size = 0;
-	public boolean assembleOK = false;
+	public boolean assembleOK = true;
 
 	private Memory memory;
 

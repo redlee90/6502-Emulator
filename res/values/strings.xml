@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">6502EmulatorRevised</string>
+    <string name="app_name">6502 Emulator</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_help">help</string>
     <string name="buttonAssemble">Assemble</string>
     <string name="buttonRun">Run</string>
@@ -11,6 +10,6 @@
     <string name="buttonHexdump">Hexdump</string>
     <string name="buttonDisassemble">Disassemble</string>
     <string name="buttonNotes">Notes</string>
-    <string name="codeArea">code area </string>
+    <string name="codeArea">Enter your code here</string>
 
 </resources>
