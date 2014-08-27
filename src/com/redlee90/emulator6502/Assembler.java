@@ -7,8 +7,8 @@ public class Assembler {
 
 	private int defaultPC = 0x600;
 	public int size = 0;
-	public boolean assembleOK=false;
-	
+	public boolean assembleOK = false;
+
 	private Memory memory;
 
 	private HashMap<String, String> LDA;
@@ -47,8 +47,8 @@ public class Assembler {
 		for (int i = 0; i < 0xffff; i++) {
 			memory.cells[i] = null;
 		}
-		this.size=0;
-		this.assembleOK=false;
+		this.size = 0;
+		this.assembleOK = false;
 	}
 
 	public void assembleCode(String code) {
@@ -61,61 +61,121 @@ public class Assembler {
 	}
 
 	private void assembleLine(String line) {
-		String newLine = line.replaceAll("(\\s*)([^;]*)(;\\s*)", "$2");
-		newLine = newLine.replace(",", " ");
-		StringTokenizer st = new StringTokenizer(newLine);
-		int numParam = st.countTokens() - 1;
+		String patternImm = "(\\s*)(\\w{3})(\\s*)(#\\$)([a-f,0-9]{2})(\\s*;?.*)";
+		String patternABS = "(\\s*)(\\w{3})(\\s*)(\\$)([a-f,0-9]{4})(\\s*;?.*)";
+		String patternZP = "(\\s*)(\\w{3})(\\s*)(\\$)([a-f,0-9]{2})(\\s*;?.*)";
+		String patternZPX = "(\\s*)(\\w{3})(\\s*)(\\$)([a-f,0-9]{2})(\\s*,\\s*)([X,x])(\\s*;?.*)";
+		String patternZPY = "(\\s*)(\\w{3})(\\s*)(\\$)([a-f,0-9]{2})(\\s*,\\s*)([Y,y])(\\s*;?.*)";
+		String patternABSX = "(\\s*)(\\w{3})(\\s*)(\\$)([a-f,0-9]{4})(\\s*,\\s*)([X,x])(\\s*;?.*)";
+		String patternABSY = "(\\s*)(\\w{3})(\\s*)(\\$)([a-f,0-9]{4})(\\s*,\\s*)([Y,y])(\\s*;?.*)";
+		String patternIND = "(\\s*)(\\w{3})(\\s*)(\\()(\\s*\\$\\s*)([a-f,0-9]{4})(\\s*\\))(\\s*;?.*)";
+		String patternINDX = "(\\s*)(\\w{3})(\\s*)(\\()(\\s*\\$\\s*)([a-f,0-9]{2})(\\s*,\\s*)([X,x])(\\s*\\))(\\s*;?.*)";
+		String patternINDY = "(\\s*)(\\w{3})(\\s*)(\\()(\\s*\\$\\s*)([a-f,0-9]{2})(\\s*\\))(\\s*,\\s*)([Y,y])(\\s*;?.*)";
 
-		String command = st.nextToken();
-		System.out.println("command is " + command);
-		System.out.println("number of parameters is " + numParam);
+		// Imm
+		if (line.matches(patternImm)) {
+			StringTokenizer st = new StringTokenizer(line.replaceAll(
+					patternImm, "$2 $5"));
+			String command = st.nextToken();
+			String ImmNum = st.nextToken();
 
-		// LDA, STA
-		if (command.equals("LDA") || command.equals("STA")) {
-
-			// Imm, ZP, ABS
-			if (numParam == 1) {
-				String param = st.nextToken();
-
-				// Imm, for LDA only
-				if (param.substring(0, 1).equals("#")) {
-					memory.cells[defaultPC++] = LDA.get("Imm");
-					memory.cells[defaultPC++] = param.substring(2);
-					size+=2;
-				}
-
-				// ZP or ABS
-				else {
-					String addr = param.substring(1);
-					// if for ZP; else for ABS
-					if (addr.length() == 2) {
-						if (command.equals("LDA")) {
-							memory.cells[defaultPC++] = LDA.get("ZP");
-						} else if (command.equals("STA")) {
-							memory.cells[defaultPC++] = STA.get("ZP");
-						}
-						memory.cells[defaultPC++] = addr;
-						size+=2;
-					} else {
-						if (command.equals("LDA")) {
-							memory.cells[defaultPC++] = LDA.get("ABS");
-						} else if (command.equals("STA")) {
-							memory.cells[defaultPC++] = STA.get("ABS");
-						}
-						memory.cells[defaultPC++] = addr.substring(2);
-						memory.cells[defaultPC++] = addr.substring(0, 2);
-						size+=3;
-					}
-
-				}
-
+			switch (command) {
+			case "LDA":
+				this.memory.cells[defaultPC++] = LDA.get("Imm");
+				this.memory.cells[defaultPC++] = ImmNum;
 			}
 
-			// ZPX, ABSX, ABSY, INDX, INDY
-			else if (numParam == 2) {
-
+		}
+		
+		// ABS
+		else if (line.matches(patternABS)) {
+			StringTokenizer st = new StringTokenizer(line.replaceAll(patternABS, "$2 $5"));
+			String command = st.nextToken();
+			String ABSAddr = st.nextToken();
+			switch(command) {
+			case "LDA":
+				this.memory.cells[defaultPC++] = LDA.get("ABS");
+				this.memory.cells[defaultPC++] = ABSAddr.substring(2);
+				this.memory.cells[defaultPC++] = ABSAddr.substring(0,2);
 			}
 		}
-		assembleOK=true;
+		// ZP
+		else if (line.matches(patternZP)) {
+			StringTokenizer st = new StringTokenizer(line.replaceAll(patternZP, "$2 $5"));
+			String command = st.nextToken();
+			String ZPAddr =st.nextToken();
+			switch(command) {
+			case "LDA":
+				this.memory.cells[defaultPC++] = LDA.get("ZP");
+				this.memory.cells[defaultPC++] = ZPAddr;
+			}
+		}
+		
+		// ZPX
+		else if (line.matches(patternZPX)) {
+			StringTokenizer st = new StringTokenizer(line.replaceAll(patternZPX, "$2 $5"));
+			String command = st.nextToken();
+			String ZPXAddr = st.nextToken();
+			switch(comand) {
+			case "LDA":
+				this.memory.cells[defaultPC++] = LDA.get("ZPX");
+				this.memory.cells[defaultPC++] = ZPXAddr;
+				
+			case "STA":
+				
+			}
+
+		}
+		
+		// ZPY
+		else if (line.matches(patternZPY)) {
+			StringTokenizer st = new StringTokenizer(line.replaceAll(patternZPY, "$2 $5"));
+			String command  = st.nextToken();
+			String ZPYAddr = st.nextToken();
+			
+
+		}
+		
+		// ABSX
+		else if (line.matches(patternABSX)) {
+			StringTokenizer st = new StringTokenizer(line.replaceAll(patternABSX, "$2 $5"));
+			String command = st.nextToken();
+			String ABSXAddr = st.nextToken();
+			
+		}
+		
+		// ABSY
+		else if (line.matches(patternABSY)) {
+			StringTokenizer st = new StringTokenizer(line.replaceAll(patternABSY, "$2 $5"));
+			String command = st.nextToken();
+			String ABSYAddr = st.nextToken();
+			
+		}
+		// IND
+		else if (line.matches(patternIND)) {
+			StringTokenizer st = new StringTokenizer(line.replaceAll(patternIND, "$2 $6"));
+			String command  = st.nextToken();
+			String INDAddr = st.nextToken();
+
+		}
+		
+		// INDX
+		else if (line.matches(patternINDX)) {
+			StringTokenizer st = new StringTokenizer(line.replaceAll(patternINDX, "$2 $6"));
+			String command  = st.nextToken();
+			String INDXAddr = st.nextToken();
+		}
+		
+		// INDY
+		else if (line.matches(patternINDY)) {
+			StringTokenizer st = new StringTokenizer(line.replaceAll(patternINDY, "$2 $6"));
+			String command  = st.nextToken();
+			String INDYAddr = st.nextToken();
+		} 
+		
+		// Syntax error
+		else {
+			this.assembleOK = false;
+		}
 	}
 }
