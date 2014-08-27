@@ -1,0 +1,82 @@
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:animateLayoutChanges="true"
+    tools:context=".MainActivity" >
+    	<Button
+    	    android:id="@+id/buttonAssemble"
+    	    android:text="@string/buttonAssemble"
+        	android:layout_width="50dp"
+        	android:layout_height="40dp"
+			android:textSize="18px">
+    	</Button>   
+    	<Button
+    	    android:id="@+id/buttonRun"
+    	    android:text="@string/buttonRun"
+        	android:layout_width="50dp"
+        	android:layout_height="40dp"
+			android:textSize="18px"
+        	android:layout_toRightOf="@+id/buttonAssemble">
+   		</Button>
+   		<Button 
+   		    android:id="@+id/buttonReset"
+   		    android:text="@string/buttonReset" 
+   		    android:layout_width="50dp"
+   		    android:layout_height="40dp"
+			android:textSize="18px"
+   		    android:layout_toRightOf="@+id/buttonRun"
+   		></Button>   
+   		<Button 
+   		    android:id="@+id/buttonHexdump"
+   		    android:text="@string/buttonHexdump"
+   		    android:layout_width="50dp"
+   		    android:layout_height="40dp"
+			android:textSize="18px"
+   		    android:layout_toRightOf="@+id/buttonReset"
+    	></Button>
+   		<Button 
+   		    android:id="@+id/buttonDisassemble"
+   		    android:text="@string/buttonDisassemble"
+   		    android:layout_width="60dp"
+   		    android:layout_height="40dp"
+			android:textSize="18px"
+   		    android:layout_toRightOf="@+id/buttonHexdump"
+   		></Button>
+   		<Button 
+   		    android:id="@+id/buttonNotes"
+   		    android:text="@string/buttonNotes"
+   		    android:layout_width="50dp"
+   		    android:layout_height="40dp"
+			android:textSize="18px"
+   		    android:layout_toRightOf="@+id/buttonDisassemble"   		    
+   		></Button>
+   		<!-- com.redlee90.Emulator.PPU
+   		    android:layout_alignParentRight="true"
+   		    android:layout_below="@+id/buttonNotes"
+   		    android:id="@+id/display"
+   		    android:layout_width="320dp"
+   		    android:layout_height="320dp"
+   		    
+   		    /> -->
+   		<EditText
+		    android:layout_width="160dp"
+			android:layout_height="160dp"
+			android:layout_below="@+id/buttonAssemble"
+			android:background="@drawable/backwithborder"
+   		    android:id="@+id/codeInput"
+			android:gravity="top"
+   		    android:hint="@string/codeArea"
+   		    android:inputType="textMultiLine"
+   		    android:lines="20"
+   		    android:scrollHorizontally="false"
+   		    android:scrollbars="vertical"
+   		    android:singleLine="false" />
+   		
+</RelativeLayout>
