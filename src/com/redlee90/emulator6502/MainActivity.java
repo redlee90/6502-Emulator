@@ -39,6 +39,8 @@ public class MainActivity extends Activity {
 	private Memory memory;
 	private Assembler assembler;
 	private VM vm;
+	
+	public static Canvas c;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +73,7 @@ public class MainActivity extends Activity {
 		ppu.setBackgroundColor(Color.BLUE);
 		relativeLayout.addView(ppu);
 		Bitmap bitmap = Bitmap.createBitmap(480, 480, Bitmap.Config.ARGB_8888);
-		Canvas c = new Canvas(bitmap);
+		c = new Canvas(bitmap);
 		ppu.draw(c);
 
 		memory = new Memory();

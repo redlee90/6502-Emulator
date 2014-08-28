@@ -12,4 +12,5 @@ public class Memory {
 			this.cells[i] = null;
 		}
 	}
+	
 }

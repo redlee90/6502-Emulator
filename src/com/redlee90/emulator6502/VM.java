@@ -102,6 +102,14 @@ public class VM {
 			MainActivity
 					.showTextViewInfo("Debugger has reached the end of the code!");
 		}
+		
+		for (int i=0;i<=0x3ff;i++) {
+			int location = 0x200+i;
+			if (memory.cells[location]!=null) {
+				int color = Integer.parseInt(memory.cells[location],16);
+				PPU.drawDot(MainActivity.c, location, color);
+			}
+		}
 
 	}
 
