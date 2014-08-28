@@ -6,4 +6,10 @@ public class Memory {
 	public Memory() {
 		this.cells = new String[0xffff];
 	}
+	
+	public void reset () {
+		for (int i=0;i<0xffff;i++) {
+			this.cells[i]=null;
+		}
+	}
 }

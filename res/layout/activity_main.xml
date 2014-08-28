@@ -66,7 +66,7 @@
 		android:lines="20"
 		android:scrollHorizontally="true"
 		android:scrollbars="vertical"
-		android:singleLine="false"
+		android:singleLine="true"
 		android:textSize="12sp"/>
 
 	<LinearLayout
@@ -96,6 +96,7 @@
 				android:id="@+id/EditTextA"
 				android:textSize="12sp"
 				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:background="@drawable/backwithborder"
 				android:singleLine="true"
 				android:textColor="#5EDE2B"/>
 
@@ -114,6 +115,7 @@
 				android:id="@+id/EditTextX"
 				android:textSize="12sp"
 				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:background="@drawable/backwithborder"
 				android:singleLine="true"
 				android:textColor="#BE3C34"/>
 
@@ -132,6 +134,7 @@
 				android:id="@+id/EditTextY"
 				android:textSize="12sp"
 				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:background="@drawable/backwithborder"
 				android:singleLine="true"
 				android:textColor="#BF1408"/>
 
@@ -146,10 +149,11 @@
 			<EditText
 				android:layout_height="wrap_content"
 				android:ems="10"
-				android:layout_width="50dp"
+				android:layout_width="60dp"
 				android:id="@+id/EditTextPC"
 				android:textSize="12sp"
 				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:background="@drawable/backwithborder"
 				android:singleLine="true"
 				android:textColor="#A0B9FF"/>
 

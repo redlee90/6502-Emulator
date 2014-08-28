@@ -21,6 +21,11 @@ public class Assembler {
 		this.memory = memory;
 
 		INC = new HashMap<String, String>() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			{
 				put("ZP", "e6");
 				put("ZPX", "f6");
@@ -30,6 +35,11 @@ public class Assembler {
 		};
 
 		LDA = new HashMap<String, String>() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			{
 				put("Imm", "a9");
 				put("ZP", "a5");
@@ -43,6 +53,11 @@ public class Assembler {
 		};
 
 		LDX = new HashMap<String, String>() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			{
 				put("Imm", "a2");
 				put("ZP", "a6");
@@ -53,6 +68,11 @@ public class Assembler {
 		};
 
 		LDY = new HashMap<String, String>() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			{
 				put("Imm", "a0");
 				put("ZP", "a4");
@@ -64,6 +84,11 @@ public class Assembler {
 		};
 
 		STA = new HashMap<String, String>() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			{
 				put("ZP", "85");
 				put("ZPX", "95");
@@ -78,16 +103,14 @@ public class Assembler {
 
 	}
 
-	private void restore() {
-		for (int i = 0; i < 0xffff; i++) {
-			memory.cells[i] = null;
-		}
+	public void reset() {
 		this.size = 0;
+		this.defaultPC = 0x600;
 		this.assembleOK = false;
 	}
 
 	public void assembleCode(String code) {
-		restore();
+		reset();
 		String lines[] = code.split("\\r?\\n");
 
 		for (int i = 0; i < lines.length; i++) {
@@ -103,7 +126,7 @@ public class Assembler {
 		String patternABS = "(\\s*)(\\w{3})(\\s*)(\\$)([a-f,0-9]{4})([$,\\s*;.*])";
 		String patternABSX = "(\\s*)(\\w{3})(\\s*)(\\$)([a-f,0-9]{4})(\\s*,\\s*)([X,x])(\\s*;?.*)";
 		String patternABSY = "(\\s*)(\\w{3})(\\s*)(\\$)([a-f,0-9]{4})(\\s*,\\s*)([Y,y])(\\s*;?.*)";
-		String patternIND = "(\\s*)(\\w{3})(\\s*)(\\()(\\s*\\$\\s*)([a-f,0-9]{4})(\\s*\\))(\\s*;?.*)";
+		//String patternIND = "(\\s*)(\\w{3})(\\s*)(\\()(\\s*\\$\\s*)([a-f,0-9]{4})(\\s*\\))(\\s*;?.*)";
 		String patternINDX = "(\\s*)(\\w{3})(\\s*)(\\()(\\s*\\$\\s*)([a-f,0-9]{2})(\\s*,\\s*)([X,x])(\\s*\\))(\\s*;?.*)";
 		String patternINDY = "(\\s*)(\\w{3})(\\s*)(\\()(\\s*\\$\\s*)([a-f,0-9]{2})(\\s*\\))(\\s*,\\s*)([Y,y])(\\s*;?.*)";
 
@@ -348,14 +371,14 @@ public class Assembler {
 
 		}
 		// IND
-		else if (line.matches(patternIND)) {
+		/*else if (line.matches(patternIND)) {
 			System.out.println(line + " matches IND");
 			StringTokenizer st = new StringTokenizer(line.replaceAll(
 					patternIND, "$2 $6"));
 			String command = st.nextToken();
 			String INDAddr = st.nextToken();
 
-		}
+		}*/
 
 		// INDX
 		else if (line.matches(patternINDX)) {
