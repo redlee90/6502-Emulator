@@ -20,8 +20,8 @@ public class MainActivity extends Activity {
 	private Button buttonRun;
 	private Button buttonReset;
 	private Button buttonHexdump;
-	private EditText codeInput;
-	private TextView information;
+	private EditText editTextCode;
+	private TextView textViewInfo;
 	private Memory memory;
 	private Assembler assembler;
 
@@ -30,8 +30,8 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_main);
-		codeInput = (EditText) findViewById(R.id.codeInput);
-		information = (TextView) findViewById(R.id.info);
+		editTextCode = (EditText) findViewById(R.id.EditTextCode);
+		textViewInfo = (TextView) findViewById(R.id.TextViewInfo);
 		buttonAssemble = (Button) findViewById(R.id.buttonAssemble);
 		buttonRun = (Button) findViewById(R.id.buttonRun);
 		buttonReset = (Button) findViewById(R.id.buttonReset);
@@ -57,9 +57,9 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				assembler.assembleCode(codeInput.getText().toString());
+				assembler.assembleCode(editTextCode.getText().toString());
 				if (assembler.assembleOK) {
-					information.setText("Assemble successfully");
+					textViewInfo.setText("Assemble successfully");
 				}
 			}
 
@@ -87,9 +87,9 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				information.setText("the size of code is "+assembler.size+"\n");
+				textViewInfo.setText("the size of code is "+assembler.size+"\n");
 				for (int i=0;i<assembler.size;i++) {
-					information.append(memory.cells[0x600+i]+"\n");
+					textViewInfo.append(memory.cells[0x600+i]+"\n");
 				}											
 			}
 
