@@ -54,6 +54,7 @@ public class MainActivity extends Activity {
 		
 		memory = new Memory();
 		assembler = new Assembler(memory);
+		pm = new PrintOutManager();
 		vm = new VM(memory,pm);
 
 		buttonAssemble.setOnClickListener(new OnClickListener() {
