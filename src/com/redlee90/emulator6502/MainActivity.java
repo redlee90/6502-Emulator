@@ -22,8 +22,10 @@ public class MainActivity extends Activity {
 	private Button buttonHexdump;
 	private EditText editTextCode;
 	private TextView textViewInfo;
+	private PrintOutManager pm;
 	private Memory memory;
 	private Assembler assembler;
+	private VM vm;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,7 @@ public class MainActivity extends Activity {
 		
 		memory = new Memory();
 		assembler = new Assembler(memory);
+		vm = new VM(memory,pm);
 
 		buttonAssemble.setOnClickListener(new OnClickListener() {
 
@@ -69,7 +72,7 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-
+				vm.run();
 			}
 
 		});

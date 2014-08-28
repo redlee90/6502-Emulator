@@ -8,9 +8,11 @@ public class VM {
 	private int regPC = 0x600;
 	private int regSP = 0xff;
 	private Memory memory;
+	private PrintOutManager pm;
 	
-	public VM (Memory memory) {
-		this.memory = memory;
+	public VM (Memory memory, PrintOutManager pm) {
+		this.memory = memory; 
+		this.pm = pm;
 	}
 	
 	public void run() {
@@ -27,10 +29,11 @@ public class VM {
 			break;	
 		case "a5":
 			this.regA = this.memory.cells[Integer.parseInt(this.memory.cells[regPC++],16)];
+			pm.showEditTextA(this.regA);
+			break;
 		case "a9":
 			this.regA = this.memory.cells[regPC++];
-			break;
-		
+			break;		
 		default:
 			break;
 		
