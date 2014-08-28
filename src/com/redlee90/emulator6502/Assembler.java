@@ -106,7 +106,7 @@ public class Assembler {
 	public void reset() {
 		this.size = 0;
 		this.defaultPC = 0x600;
-		this.assembleOK = false;
+		this.assembleOK = true;
 	}
 
 	public void assembleCode(String code) {

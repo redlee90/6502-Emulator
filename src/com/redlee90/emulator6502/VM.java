@@ -14,89 +14,95 @@ public class VM {
 	}
 
 	public void runStep() {
-		String command = this.memory.cells[regPC++];
-		System.out.println("command is " + command);
-		int realAddr;
-		int ZPAddr;
-		int ABSAddr;
-		int INDAddr;
-		int INDAddrPart1;
-		int INDAddrPart2;
-		int valueX;
-		int valueY;
+		if (memory.cells[regPC]!=null) {
+			String command = this.memory.cells[regPC++];
+			System.out.println("command is " + command);
+			int realAddr;
+			int ZPAddr;
+			int ABSAddr;
+			int INDAddr;
+			int INDAddrPart1;
+			int INDAddrPart2;
+			int valueX;
+			int valueY;
 
-		switch (command) {
-		case "85":
-			memory.cells[Integer.parseInt(memory.cells[regPC++], 16)] = regA;
-			break;
-		case "a0":
-			regY = memory.cells[regPC++];
-			break;
-		case "a1": // LDA, INDX
-			ZPAddr = getZPAddr();
-			valueX = getValueX();
-			INDAddr = ZPAddr + valueX;
-			INDAddrPart1 = Integer.parseInt(memory.cells[INDAddr], 16);
-			INDAddrPart2 = Integer.parseInt(memory.cells[INDAddr + 1], 16);
-			realAddr = INDAddrPart1 + INDAddrPart2 << 8;
-			regA = getValueFromMem(realAddr);
-			MainActivity.showEditTextA(regA);
+			switch (command) {
+			case "85":
+				memory.cells[Integer.parseInt(memory.cells[regPC++], 16)] = regA;
+				break;
+			case "a0":
+				regY = memory.cells[regPC++];
+				break;
+			case "a1": // LDA, INDX
+				ZPAddr = getZPAddr();
+				valueX = getValueX();
+				INDAddr = ZPAddr + valueX;
+				INDAddrPart1 = Integer.parseInt(memory.cells[INDAddr], 16);
+				INDAddrPart2 = Integer.parseInt(memory.cells[INDAddr + 1], 16);
+				realAddr = INDAddrPart1 + INDAddrPart2 << 8;
+				regA = getValueFromMem(realAddr);
+				MainActivity.showEditTextA(regA);
 
-		case "a2":
-			regX = memory.cells[regPC++];
-			MainActivity.showEditTextA(regA);
+			case "a2":
+				regX = memory.cells[regPC++];
+				MainActivity.showEditTextA(regA);
 
-			break;
-		case "a5":
-			regA = memory.cells[Integer.parseInt(memory.cells[regPC++], 16)];
-			MainActivity.showEditTextA(regA);
-			break;
-		case "a9": // LDA, Imm
-			regA = memory.cells[regPC++];
-			MainActivity.showEditTextA(regA);
-			break;
-		case "ad": // LDA, ABS
-			ABSAddr = getABSAddr();
-			realAddr = ABSAddr;
-			regA = getValueFromMem(realAddr);
-			MainActivity.showEditTextA(regA);
-			break;
-		case "b1": // LDA, INDY
-			ZPAddr = getZPAddr();
-			valueY = getValueY();
-			INDAddr = ZPAddr;
-			INDAddrPart1 = Integer.parseInt(memory.cells[INDAddr]);
-			INDAddrPart2 = Integer.parseInt(memory.cells[INDAddr + 1]);
-			realAddr = INDAddrPart1 + 1 + INDAddrPart2 << 8;
-			regA = getValueFromMem(realAddr);
-			MainActivity.showEditTextA(regA);
+				break;
+			case "a5":
+				regA = memory.cells[Integer.parseInt(memory.cells[regPC++], 16)];
+				MainActivity.showEditTextA(regA);
+				break;
+			case "a9": // LDA, Imm
+				regA = memory.cells[regPC++];
+				MainActivity.showEditTextA(regA);
+				break;
+			case "ad": // LDA, ABS
+				ABSAddr = getABSAddr();
+				realAddr = ABSAddr;
+				regA = getValueFromMem(realAddr);
+				MainActivity.showEditTextA(regA);
+				break;
+			case "b1": // LDA, INDY
+				ZPAddr = getZPAddr();
+				valueY = getValueY();
+				INDAddr = ZPAddr;
+				INDAddrPart1 = Integer.parseInt(memory.cells[INDAddr]);
+				INDAddrPart2 = Integer.parseInt(memory.cells[INDAddr + 1]);
+				realAddr = INDAddrPart1 + 1 + INDAddrPart2 << 8;
+				regA = getValueFromMem(realAddr);
+				MainActivity.showEditTextA(regA);
 
-		case "b5": // LDA, ZPX
-			ZPAddr = getZPAddr();
-			valueX = getValueX();
-			realAddr = ZPAddr + valueX;
-			regA = getValueFromMem(realAddr);
-			MainActivity.showEditTextA(regA);
-			break;
-		case "b9": // LDA, ABSY
-			ABSAddr = getABSAddr();
-			valueY = getValueY();
-			realAddr = ABSAddr + valueY;
-			regA = getValueFromMem(realAddr);
-			MainActivity.showEditTextA(regA);
-			break;
-		case "bd": // LDA, ABSX
-			ABSAddr = getABSAddr();
-			valueX = getValueX();
-			realAddr = ABSAddr + valueX;
-			regA = getValueFromMem(realAddr);
-			MainActivity.showEditTextA(regA);
-			break;
-		default:
-			break;
+			case "b5": // LDA, ZPX
+				ZPAddr = getZPAddr();
+				valueX = getValueX();
+				realAddr = ZPAddr + valueX;
+				regA = getValueFromMem(realAddr);
+				MainActivity.showEditTextA(regA);
+				break;
+			case "b9": // LDA, ABSY
+				ABSAddr = getABSAddr();
+				valueY = getValueY();
+				realAddr = ABSAddr + valueY;
+				regA = getValueFromMem(realAddr);
+				MainActivity.showEditTextA(regA);
+				break;
+			case "bd": // LDA, ABSX
+				ABSAddr = getABSAddr();
+				valueX = getValueX();
+				realAddr = ABSAddr + valueX;
+				regA = getValueFromMem(realAddr);
+				MainActivity.showEditTextA(regA);
+				break;
+			default:
+				break;
+			}
+
+			MainActivity.showEditTextPC("0x"+Integer.toHexString(regPC));
 		}
-
-		MainActivity.showEditTextPC("0x"+Integer.toHexString(regPC));
+		else {
+			MainActivity.showTextViewInfo("Debugger has reached the end of the code!");
+		}
+	
 
 	}
 	

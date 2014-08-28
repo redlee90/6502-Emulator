@@ -11,6 +11,9 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -21,13 +24,17 @@ public class MainActivity extends Activity {
 	private Button buttonRun;
 	private Button buttonReset;
 	private Button buttonHexdump;
-	private EditText editTextCode;
-	private TextView textViewInfo;
+	private Button buttonStep;
 
+	private static TextView textViewInfo;
+
+	private EditText editTextCode;
 	private static EditText editTextA;
 	private static EditText editTextX;
 	private static EditText editTextY;
 	private static EditText editTextPC;
+
+	private CheckBox checkBoxDebug;
 
 	private Memory memory;
 	private Assembler assembler;
@@ -42,13 +49,17 @@ public class MainActivity extends Activity {
 		buttonRun = (Button) findViewById(R.id.buttonRun);
 		buttonReset = (Button) findViewById(R.id.buttonReset);
 		buttonHexdump = (Button) findViewById(R.id.buttonHexdump);
-		editTextCode = (EditText) findViewById(R.id.EditTextCode);
+		buttonStep = (Button) findViewById(R.id.buttonStep);
+
 		textViewInfo = (TextView) findViewById(R.id.TextViewInfo);
 
+		editTextCode = (EditText) findViewById(R.id.EditTextCode);
 		editTextA = (EditText) findViewById(R.id.EditTextA);
 		editTextX = (EditText) findViewById(R.id.EditTextX);
 		editTextY = (EditText) findViewById(R.id.EditTextY);
 		editTextPC = (EditText) findViewById(R.id.EditTextPC);
+
+		checkBoxDebug = (CheckBox) findViewById(R.id.checkBoxDebug);
 
 		PPU ppu = new PPU(this);
 		RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
@@ -117,6 +128,30 @@ public class MainActivity extends Activity {
 
 		});
 
+		buttonStep.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				vm.runStep();
+			}
+
+		});
+
+		checkBoxDebug.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView,
+					boolean isChecked) {
+				if (isChecked) {
+					buttonStep.setVisibility(View.VISIBLE);
+				} else {
+					buttonStep.setVisibility(View.INVISIBLE);
+				}
+
+			}
+
+		});
+
 	}
 
 	public static void showEditTextA(String message) {
@@ -135,6 +170,9 @@ public class MainActivity extends Activity {
 		editTextPC.setText(message);
 	}
 
+	public static void showTextViewInfo(String message) {
+		textViewInfo.setText(message);
+	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
