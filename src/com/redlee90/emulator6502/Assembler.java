@@ -114,16 +114,17 @@ public class Assembler {
 		String lines[] = code.split("\\r?\\n");
 
 		for (int i = 0; i < lines.length; i++) {
+			System.out.println("the "+i+"th line is "+"^"+lines[i]+"$");
 			assembleLine(lines[i]);
 		}
 	}
 
 	private void assembleLine(String line) {
-		String patternImm = "(\\s*)(\\w{3})(\\s*)(#\\$)([a-f,0-9]{2})(\\s*;?.*)";
+		String patternImm = "(\\s*)(\\w{3})(\\s*)(#\\$)([a-f,0-9]{1,2})(\\s*;?.*)";
 		String patternZP = "(\\s*)(\\w{3})(\\s*)(\\$)([a-f,0-9]{2})([$,\\s*;.*])";
 		String patternZPX = "(\\s*)(\\w{3})(\\s*)(\\$)([a-f,0-9]{2})(\\s*,\\s*)([X,x])(\\s*;?.*)";
 		String patternZPY = "(\\s*)(\\w{3})(\\s*)(\\$)([a-f,0-9]{2})(\\s*,\\s*)([Y,y])(\\s*;?.*)";
-		String patternABS = "(\\s*)(\\w{3})(\\s*)(\\$)([a-f,0-9]{4})([$,\\s*;.*])";
+		String patternABS = "(\\s*)(\\w{3})(\\s*)(\\$)([a-f0-9]{3,4})(\\s*$?;?.*)";
 		String patternABSX = "(\\s*)(\\w{3})(\\s*)(\\$)([a-f,0-9]{4})(\\s*,\\s*)([X,x])(\\s*;?.*)";
 		String patternABSY = "(\\s*)(\\w{3})(\\s*)(\\$)([a-f,0-9]{4})(\\s*,\\s*)([Y,y])(\\s*;?.*)";
 		// String patternIND =

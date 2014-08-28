@@ -30,6 +30,10 @@ public class VM {
 			case "85":
 				memory.cells[Integer.parseInt(memory.cells[regPC++], 16)] = regA;
 				break;
+			case "8d": //STA, ABS
+				realAddr = getABSAddr();
+				memory.cells[realAddr] = regA;
+				break;
 			case "a0":
 				regY = memory.cells[regPC++];
 				break;

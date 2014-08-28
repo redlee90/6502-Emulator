@@ -51,9 +51,10 @@ public class PPU extends View {
 					cellHeight), paint);
 			break;
 		case 0x1: // white
+			System.out.println("I am going to draw white at "+location);
 			paint.setColor(Color.WHITE);
-			canvas.drawRect(new Rect(x * cellWidth, y * cellHeight, cellWidth,
-					cellHeight), paint);
+			canvas.drawRect(new Rect(x * cellWidth, y * cellHeight, x*cellWidth+cellWidth,
+					y*cellHeight+cellHeight), paint);
 			break;
 		case 0x2: // red
 			paint.setColor(Color.RED);

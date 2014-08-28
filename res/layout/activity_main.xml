@@ -61,7 +61,7 @@
         android:lines="20"
         android:scrollHorizontally="true"
         android:scrollbars="vertical"
-        android:singleLine="true"
+        android:singleLine="false"
         android:textSize="12sp" />
 
     <LinearLayout
