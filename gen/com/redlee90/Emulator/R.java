@@ -56,6 +56,8 @@ public final class R {
         public static final int buttonNotes=0x7f050008;
         public static final int buttonReset=0x7f050005;
         public static final int buttonRun=0x7f050004;
+        public static final int buttonStep=0x7f05000b;
+        public static final int checkBoxDebug=0x7f05000a;
         public static final int codeArea=0x7f050009;
     }
     public static final class style {

@@ -14,7 +14,7 @@ public class VM {
 	}
 
 	public void runStep() {
-		if (memory.cells[regPC]!=null) {
+		if (memory.cells[regPC] != null) {
 			String command = this.memory.cells[regPC++];
 			System.out.println("command is " + command);
 			int realAddr;
@@ -97,26 +97,25 @@ public class VM {
 				break;
 			}
 
-			MainActivity.showEditTextPC("0x"+Integer.toHexString(regPC));
+			MainActivity.showEditTextPC("0x" + Integer.toHexString(regPC));
+		} else {
+			MainActivity
+					.showTextViewInfo("Debugger has reached the end of the code!");
 		}
-		else {
-			MainActivity.showTextViewInfo("Debugger has reached the end of the code!");
-		}
-	
 
 	}
-	
+
 	public void runAll() {
-		while (memory.cells[regPC]!=null) {
+		while (memory.cells[regPC] != null) {
 			runStep();
 		}
 	}
-	
+
 	public void reset() {
-		regA=null;
-		regX=null;
-		regY=null;
-		regPC=0x600;		
+		regA = null;
+		regX = null;
+		regY = null;
+		regPC = 0x600;
 	}
 
 	private String getValueFromMem(int realAddr) {

@@ -11,5 +11,7 @@
     <string name="buttonDisassemble">Disassemble</string>
     <string name="buttonNotes">Notes</string>
     <string name="codeArea">Enter your code here</string>
+    <string name="checkBoxDebug">Debug</string>
+    <string name="buttonStep">Step</string>
 
 </resources>

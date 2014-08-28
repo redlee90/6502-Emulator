@@ -126,7 +126,8 @@ public class Assembler {
 		String patternABS = "(\\s*)(\\w{3})(\\s*)(\\$)([a-f,0-9]{4})([$,\\s*;.*])";
 		String patternABSX = "(\\s*)(\\w{3})(\\s*)(\\$)([a-f,0-9]{4})(\\s*,\\s*)([X,x])(\\s*;?.*)";
 		String patternABSY = "(\\s*)(\\w{3})(\\s*)(\\$)([a-f,0-9]{4})(\\s*,\\s*)([Y,y])(\\s*;?.*)";
-		//String patternIND = "(\\s*)(\\w{3})(\\s*)(\\()(\\s*\\$\\s*)([a-f,0-9]{4})(\\s*\\))(\\s*;?.*)";
+		// String patternIND =
+		// "(\\s*)(\\w{3})(\\s*)(\\()(\\s*\\$\\s*)([a-f,0-9]{4})(\\s*\\))(\\s*;?.*)";
 		String patternINDX = "(\\s*)(\\w{3})(\\s*)(\\()(\\s*\\$\\s*)([a-f,0-9]{2})(\\s*,\\s*)([X,x])(\\s*\\))(\\s*;?.*)";
 		String patternINDY = "(\\s*)(\\w{3})(\\s*)(\\()(\\s*\\$\\s*)([a-f,0-9]{2})(\\s*\\))(\\s*,\\s*)([Y,y])(\\s*;?.*)";
 
@@ -371,14 +372,14 @@ public class Assembler {
 
 		}
 		// IND
-		/*else if (line.matches(patternIND)) {
-			System.out.println(line + " matches IND");
-			StringTokenizer st = new StringTokenizer(line.replaceAll(
-					patternIND, "$2 $6"));
-			String command = st.nextToken();
-			String INDAddr = st.nextToken();
-
-		}*/
+		/*
+		 * else if (line.matches(patternIND)) { System.out.println(line +
+		 * " matches IND"); StringTokenizer st = new
+		 * StringTokenizer(line.replaceAll( patternIND, "$2 $6")); String
+		 * command = st.nextToken(); String INDAddr = st.nextToken();
+		 * 
+		 * }
+		 */
 
 		// INDX
 		else if (line.matches(patternINDX)) {
