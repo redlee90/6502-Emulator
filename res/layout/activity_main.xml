@@ -98,7 +98,8 @@
 				android:singleLine="true"
 				android:textAppearance="?android:attr/textAppearanceSmall"
 				android:textColor="#F40000"
-				android:textSize="12sp"/>
+				android:textSize="12sp"
+				android:gravity="center"/>
 
 			<TextView
 				android:layout_width="wrap_content"
@@ -117,7 +118,8 @@
 				android:singleLine="true"
 				android:textAppearance="?android:attr/textAppearanceSmall"
 				android:textColor="#F40000"
-				android:textSize="12sp"/>
+				android:textSize="12sp"
+				android:gravity="center"/>
 
 			<TextView
 				android:layout_width="wrap_content"
@@ -136,13 +138,15 @@
 				android:singleLine="true"
 				android:textAppearance="?android:attr/textAppearanceSmall"
 				android:textColor="#F40000"
-				android:textSize="12sp"/>
+				android:textSize="12sp"
+				android:gravity="center"/>
 
 			<TextView
 				android:layout_height="match_parent"
 				android:text="SP="
 				android:layout_width="wrap_content"
-				android:gravity="center"/>
+				android:gravity="center"
+				android:textSize="12sp"/>
 
 			<EditText
 				android:layout_height="wrap_content"
@@ -152,7 +156,8 @@
 				android:textSize="12sp"
 				android:hint="0xff"
 				android:background="@drawable/backwithborder"
-				android:textColor="#06F000"/>
+				android:textColor="#06F000"
+				android:gravity="center"/>
 
 			<TextView
 				android:layout_width="wrap_content"
@@ -172,7 +177,8 @@
 				android:textAppearance="?android:attr/textAppearanceSmall"
 				android:textColor="#06FF00"
 				android:textSize="12sp"
-				android:hint="0x600"/>
+				android:hint="0x600"
+				android:gravity="center"/>
 
 		</LinearLayout>
 
@@ -188,10 +194,11 @@
 			android:scrollHorizontally="false"
 			android:scrollbars="vertical"
 			android:singleLine="false"
-			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:textAppearance="?android:attr/textAppearanceSmall"
 			android:textColor="#000000"
 			android:textSize="12sp"
-			android:typeface="monospace"/>
+			android:typeface="monospace"
+			android:hint="Display important information"/>
 
 		<CheckBox
 			android:id="@+id/checkBoxDebug"
