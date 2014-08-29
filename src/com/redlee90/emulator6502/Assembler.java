@@ -267,32 +267,32 @@ public class Assembler {
 			switch (command) {
 			case "INC":
 				this.memory.cells[defaultPC++] = INC.get("ABS");
-				this.memory.cells[defaultPC++] = ABSAddr.substring(2);
-				this.memory.cells[defaultPC++] = ABSAddr.substring(0, 2);
+				this.memory.cells[defaultPC++] = ABSAddr.substring(ABSAddr.length()-2);
+				this.memory.cells[defaultPC++] = ABSAddr.substring(0, ABSAddr.length()-2);
 				this.size += 3;
 				break;
 			case "LDA":
 				this.memory.cells[defaultPC++] = LDA.get("ABS");
-				this.memory.cells[defaultPC++] = ABSAddr.substring(2);
-				this.memory.cells[defaultPC++] = ABSAddr.substring(0, 2);
+					this.memory.cells[defaultPC++] = ABSAddr.substring(ABSAddr.length()-2);
+					this.memory.cells[defaultPC++] = ABSAddr.substring(0, ABSAddr.length()-2);
 				this.size += 3;
 				break;
 			case "LDX":
 				this.memory.cells[defaultPC++] = LDX.get("ABS");
-				this.memory.cells[defaultPC++] = ABSAddr.substring(2);
-				this.memory.cells[defaultPC++] = ABSAddr.substring(0, 2);
+					this.memory.cells[defaultPC++] = ABSAddr.substring(ABSAddr.length()-2);
+					this.memory.cells[defaultPC++] = ABSAddr.substring(0, ABSAddr.length()-2);
 				this.size += 3;
 				break;
 			case "LDY":
 				this.memory.cells[defaultPC++] = LDY.get("ABS");
-				this.memory.cells[defaultPC++] = ABSAddr.substring(2);
-				this.memory.cells[defaultPC++] = ABSAddr.substring(0, 2);
+					this.memory.cells[defaultPC++] = ABSAddr.substring(ABSAddr.length()-2);
+					this.memory.cells[defaultPC++] = ABSAddr.substring(0, ABSAddr.length()-2);
 				this.size += 3;
 				break;
 			case "STA":
 				this.memory.cells[defaultPC++] = STA.get("ABS");
-				this.memory.cells[defaultPC++] = ABSAddr.substring(2);
-				this.memory.cells[defaultPC++] = ABSAddr.substring(0, 2);
+					this.memory.cells[defaultPC++] = ABSAddr.substring(ABSAddr.length()-2);
+					this.memory.cells[defaultPC++] = ABSAddr.substring(0, ABSAddr.length()-2);
 				this.size += 3;
 				break;
 			default:
@@ -311,26 +311,26 @@ public class Assembler {
 			switch (command) {
 			case "INC":
 				this.memory.cells[defaultPC++] = INC.get("ABSX");
-				this.memory.cells[defaultPC++] = ABSXAddr.substring(2);
-				this.memory.cells[defaultPC++] = ABSXAddr.substring(0, 2);
+				this.memory.cells[defaultPC++] = ABSXAddr.substring(ABSXAddr.length()-2);
+					this.memory.cells[defaultPC++] = ABSXAddr.substring(0, ABSXAddr.length()-2);
 				this.size += 3;
 				break;
 			case "LDA":
 				this.memory.cells[defaultPC++] = LDA.get("ABSX");
-				this.memory.cells[defaultPC++] = ABSXAddr.substring(2);
-				this.memory.cells[defaultPC++] = ABSXAddr.substring(0, 2);
+					this.memory.cells[defaultPC++] = ABSXAddr.substring(ABSXAddr.length()-2);
+					this.memory.cells[defaultPC++] = ABSXAddr.substring(0, ABSXAddr.length()-2);
 				this.size += 3;
 				break;
 			case "LDY":
 				this.memory.cells[defaultPC++] = LDY.get("ABSX");
-				this.memory.cells[defaultPC++] = ABSXAddr.substring(2);
-				this.memory.cells[defaultPC++] = ABSXAddr.substring(0, 2);
+					this.memory.cells[defaultPC++] = ABSXAddr.substring(ABSXAddr.length()-2);
+					this.memory.cells[defaultPC++] = ABSXAddr.substring(0, ABSXAddr.length()-2);
 				this.size += 3;
 				break;
 			case "STA":
 				this.memory.cells[defaultPC++] = STA.get("ABSX");
-				this.memory.cells[defaultPC++] = ABSXAddr.substring(2);
-				this.memory.cells[defaultPC++] = ABSXAddr.substring(0, 2);
+					this.memory.cells[defaultPC++] = ABSXAddr.substring(ABSXAddr.length()-2);
+					this.memory.cells[defaultPC++] = ABSXAddr.substring(0, ABSXAddr.length()-2);
 				this.size += 3;
 				break;
 			default:
@@ -350,20 +350,20 @@ public class Assembler {
 			switch (command) {
 			case "LDA":
 				this.memory.cells[defaultPC++] = LDA.get("ABSY");
-				this.memory.cells[defaultPC++] = ABSYAddr.substring(2);
-				this.memory.cells[defaultPC++] = ABSYAddr.substring(0, 2);
+				this.memory.cells[defaultPC++] = ABSYAddr.substring(ABSYAddr.length()-2);
+				this.memory.cells[defaultPC++] = ABSYAddr.substring(0, ABSYAddr.length()-2);
 				this.size += 3;
 				break;
 			case "LDX":
 				this.memory.cells[defaultPC++] = LDX.get("ABSY");
-				this.memory.cells[defaultPC++] = ABSYAddr.substring(2);
-				this.memory.cells[defaultPC++] = ABSYAddr.substring(0, 2);
+				this.memory.cells[defaultPC++] = ABSYAddr.substring(ABSYAddr.length()-2);
+				this.memory.cells[defaultPC++] = ABSYAddr.substring(0, ABSYAddr.length()-2);
 				this.size += 3;
 				break;
 			case "STA":
 				this.memory.cells[defaultPC++] = STA.get("ABSY");
-				this.memory.cells[defaultPC++] = ABSYAddr.substring(2);
-				this.memory.cells[defaultPC++] = ABSYAddr.substring(0, 2);
+				this.memory.cells[defaultPC++] = ABSYAddr.substring(ABSYAddr.length()-2);
+				this.memory.cells[defaultPC++] = ABSYAddr.substring(0, ABSYAddr.length()-2);
 				this.size += 3;
 				break;
 			default:
