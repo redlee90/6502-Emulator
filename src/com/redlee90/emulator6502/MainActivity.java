@@ -123,7 +123,7 @@ public class MainActivity extends Activity {
 				textViewInfo.setText("the size of code is " + assembler.size
 						+ "\n");
 				for (int i = 0; i < assembler.size; i++) {
-					textViewInfo.append(memory.cells[0x600 + i] + "\n");
+					textViewInfo.append("0x"+Integer.toHexString(0x600+i)+" "+memory.cells[0x600 + i] + "\n");
 				}
 			}
 
