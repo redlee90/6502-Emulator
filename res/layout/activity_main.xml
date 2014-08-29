@@ -85,58 +85,74 @@
 				android:layout_width="wrap_content"
 				android:layout_height="match_parent"
 				android:gravity="center"
-				android:text="regA="
+				android:text="A="
 				android:textAppearance="?android:attr/textAppearanceSmall"
 				android:textSize="12sp"/>
 
 			<EditText
 				android:id="@+id/EditTextA"
-				android:layout_width="40dp"
+				android:layout_width="35dp"
 				android:layout_height="wrap_content"
 				android:background="@drawable/backwithborder"
 				android:ems="10"
 				android:singleLine="true"
 				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:textColor="#5EDE2B"
+				android:textColor="#F40000"
 				android:textSize="12sp"/>
 
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="match_parent"
 				android:gravity="center"
-				android:text="regX="
+				android:text="X="
 				android:textAppearance="?android:attr/textAppearanceSmall"
 				android:textSize="12sp"/>
 
 			<EditText
 				android:id="@+id/EditTextX"
-				android:layout_width="40dp"
+				android:layout_width="35dp"
 				android:layout_height="wrap_content"
 				android:background="@drawable/backwithborder"
 				android:ems="10"
 				android:singleLine="true"
 				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:textColor="#BE3C34"
+				android:textColor="#F40000"
 				android:textSize="12sp"/>
 
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="match_parent"
 				android:gravity="center"
-				android:text="regY="
+				android:text="Y="
 				android:textAppearance="?android:attr/textAppearanceSmall"
 				android:textSize="12sp"/>
 
 			<EditText
 				android:id="@+id/EditTextY"
-				android:layout_width="40dp"
+				android:layout_width="35dp"
 				android:layout_height="wrap_content"
 				android:background="@drawable/backwithborder"
 				android:ems="10"
 				android:singleLine="true"
 				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:textColor="#BF1408"
+				android:textColor="#F40000"
 				android:textSize="12sp"/>
+
+			<TextView
+				android:layout_height="match_parent"
+				android:text="SP="
+				android:layout_width="wrap_content"
+				android:gravity="center"/>
+
+			<EditText
+				android:layout_height="wrap_content"
+				android:ems="10"
+				android:layout_width="50dp"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:textSize="12sp"
+				android:hint="0xff"
+				android:background="@drawable/backwithborder"
+				android:textColor="#06F000"/>
 
 			<TextView
 				android:layout_width="wrap_content"
@@ -154,8 +170,9 @@
 				android:ems="10"
 				android:singleLine="true"
 				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:textColor="#A0B9FF"
-				android:textSize="12sp"/>
+				android:textColor="#06FF00"
+				android:textSize="12sp"
+				android:hint="0x600"/>
 
 		</LinearLayout>
 
