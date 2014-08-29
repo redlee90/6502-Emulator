@@ -1,22 +1,18 @@
 package com.redlee90.emulator6502;
 
-import com.redlee90.Emulator.R;
+import android.app.*;
+import android.content.*;
+import android.graphics.*;
+import android.net.*;
+import android.os.*;
+import android.view.*;
+import android.view.View.*;
+import android.widget.*;
+import android.widget.CompoundButton.*;
+import com.redlee90.Emulator.*;
+import java.io.*;
 
-import android.os.Bundle;
-import android.app.Activity;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.view.Menu;
-import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.EditText;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
@@ -184,6 +180,53 @@ public class MainActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle item selection
+		switch (item.getItemId()) {
+			case R.id.menu_help:
+				new AlertDialog.Builder(this)
+					.setTitle("FYI")
+					.setMessage("There is an awesome article on how to program the 6502 chipset by Nick Morgan, would you like to go to that webpage?")
+					.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) { 
+							Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://skilldrick.github.io/easy6502/"));
+							startActivity(browserIntent);
+						}
+					})
+					.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) { 
+							// do nothing
+						}
+					})
+					.setIcon(android.R.drawable.ic_dialog_alert)
+					.show();
+				
+				return true;
+			case R.id.menu_open:
+			
+				return true;
+			case R.id.menu_save:
+				String filename = "myfile";
+				String string = "Hello world!";
+				FileOutputStream outputStream;
+
+				try {
+					outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
+					outputStream.write(string.getBytes());
+					outputStream.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return true;
+			case R.id.menu_settings:
+				
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
+		}
 	}
 
 }
