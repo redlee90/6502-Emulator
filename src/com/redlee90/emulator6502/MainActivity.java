@@ -39,6 +39,7 @@ public class MainActivity extends Activity {
 	private Memory memory;
 	private Assembler assembler;
 	private VM vm;
+	private PPU ppu;
 	
 	public static Canvas c;
 
@@ -62,8 +63,10 @@ public class MainActivity extends Activity {
 		editTextPC = (EditText) findViewById(R.id.EditTextPC);
 
 		checkBoxDebug = (CheckBox) findViewById(R.id.checkBoxDebug);
+		
+		memory = new Memory();
 
-		PPU ppu = new PPU(this);
+		ppu = new PPU(this,memory);
 		RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
 		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
 				480, 480);
@@ -76,9 +79,8 @@ public class MainActivity extends Activity {
 		c = new Canvas(bitmap);
 		ppu.draw(c);
 
-		memory = new Memory();
 		assembler = new Assembler(memory);
-		vm = new VM(memory);
+		vm = new VM(memory,ppu);
 
 		buttonAssemble.setOnClickListener(new OnClickListener() {
 
@@ -108,6 +110,7 @@ public class MainActivity extends Activity {
 				memory.reset();
 				assembler.reset();
 				vm.reset();
+				ppu.invalidate();
 				editTextA.setText("");
 				editTextX.setText("");
 				editTextY.setText("");

@@ -8,9 +8,11 @@ public class VM {
 	private int regPC = 0x600;
 	// private int regSP = 0x00ff;
 	private Memory memory;
+	private PPU ppu;
 
-	public VM(Memory memory) {
+	public VM(Memory memory, PPU ppu) {
 		this.memory = memory;
+		this.ppu = ppu;
 	}
 
 	public void runStep() {
@@ -107,13 +109,7 @@ public class VM {
 					.showTextViewInfo("Debugger has reached the end of the code!");
 		}
 		
-		for (int i=0;i<=0x3ff;i++) {
-			int location = 0x200+i;
-			if (memory.cells[location]!=null) {
-				int color = Integer.parseInt(memory.cells[location],16);
-				PPU.drawDot(MainActivity.c, location, color);
-			}
-		}
+		ppu.invalidate();
 
 	}
 
