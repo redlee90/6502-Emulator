@@ -29,17 +29,24 @@ public final class R {
         public static final int EditTextPC=0x7f080009;
         public static final int EditTextX=0x7f080007;
         public static final int EditTextY=0x7f080008;
-        public static final int TextViewInfo=0x7f08000a;
+        public static final int TextViewB=0x7f08000c;
+        public static final int TextViewC=0x7f080010;
+        public static final int TextViewD=0x7f08000d;
+        public static final int TextViewI=0x7f08000e;
+        public static final int TextViewInfo=0x7f080011;
+        public static final int TextViewN=0x7f08000a;
+        public static final int TextViewV=0x7f08000b;
+        public static final int TextViewZ=0x7f08000f;
         public static final int buttonAssemble=0x7f080001;
         public static final int buttonHexdump=0x7f080004;
         public static final int buttonReset=0x7f080003;
         public static final int buttonRun=0x7f080002;
-        public static final int buttonStep=0x7f08000c;
-        public static final int checkBoxDebug=0x7f08000b;
-        public static final int menu_file=0x7f08000e;
-        public static final int menu_help=0x7f08000d;
-        public static final int menu_open=0x7f080010;
-        public static final int menu_save=0x7f08000f;
+        public static final int buttonStep=0x7f080013;
+        public static final int checkBoxDebug=0x7f080012;
+        public static final int menu_file=0x7f080015;
+        public static final int menu_help=0x7f080014;
+        public static final int menu_open=0x7f080017;
+        public static final int menu_save=0x7f080016;
         public static final int relativeLayout=0x7f080000;
     }
     public static final class layout {

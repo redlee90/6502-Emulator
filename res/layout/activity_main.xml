@@ -183,6 +183,190 @@
 
 		</LinearLayout>
 
+		<LinearLayout
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:orientation="horizontal"
+			android:gravity="center"
+			android:layout_marginTop="10dp">
+
+			<TextView
+				android:layout_height="wrap_content"
+				android:text="Flag"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:layout_width="40dp"
+				android:textStyle="bold"
+				android:gravity="center"
+				android:textSize="12sp"/>
+
+			<TextView
+				android:layout_height="wrap_content"
+				android:text="N"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:layout_width="wrap_content"
+				android:gravity="center"
+				android:layout_marginLeft="5dp"
+				android:textSize="12sp"/>
+
+			<TextView
+				android:layout_height="wrap_content"
+				android:text="V"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:layout_width="wrap_content"
+				android:gravity="center"
+				android:layout_marginLeft="5dp"
+				android:textSize="12sp"/>
+
+			<TextView
+				android:layout_height="wrap_content"
+				android:text="-"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:layout_width="wrap_content"
+				android:gravity="center"
+				android:layout_marginLeft="5dp"/>
+
+			<TextView
+				android:layout_height="wrap_content"
+				android:text="B"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:layout_width="wrap_content"
+				android:gravity="center"
+				android:layout_marginLeft="5dp"
+				android:textSize="12sp"/>
+
+			<TextView
+				android:layout_height="wrap_content"
+				android:text="D"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:layout_width="wrap_content"
+				android:gravity="center"
+				android:layout_marginLeft="5dp"
+				android:textSize="12sp"/>
+
+			<TextView
+				android:layout_height="wrap_content"
+				android:text="I"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:layout_width="wrap_content"
+				android:gravity="center"
+				android:layout_marginLeft="5dp"
+				android:textSize="12sp"/>
+
+			<TextView
+				android:layout_height="wrap_content"
+				android:text="Z"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:layout_width="wrap_content"
+				android:gravity="center"
+				android:layout_marginLeft="5dp"
+				android:textSize="12sp"/>
+
+			<TextView
+				android:layout_height="wrap_content"
+				android:text="C"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:layout_width="wrap_content"
+				android:gravity="center"
+				android:layout_marginLeft="5dp"
+				android:textSize="12sp"/>
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:orientation="horizontal"
+			android:gravity="center_horizontal">
+
+			<TextView
+				android:layout_height="wrap_content"
+				android:text="Value"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:layout_width="40dp"
+				android:textStyle="bold"
+				android:gravity="center"
+				android:textSize="12sp"/>
+
+			<TextView
+				android:layout_height="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:layout_width="wrap_content"
+				android:text="0"
+				android:gravity="center"
+				android:layout_marginLeft="5dp"
+				android:textSize="12sp"
+				android:id="@+id/TextViewN"/>
+
+			<TextView
+				android:layout_height="wrap_content"
+				android:text="0"
+				android:layout_width="wrap_content"
+				android:gravity="center"
+				android:layout_marginLeft="5dp"
+				android:textSize="12sp"
+				android:id="@+id/TextViewV"/>
+
+			<TextView
+				android:layout_height="wrap_content"
+				android:text="0"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:layout_width="wrap_content"
+				android:gravity="center"
+				android:layout_marginLeft="5dp"
+				android:textSize="12sp"/>
+
+			<TextView
+				android:layout_height="wrap_content"
+				android:text="0"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:layout_width="wrap_content"
+				android:gravity="center"
+				android:layout_marginLeft="5dp"
+				android:textSize="12sp"
+				android:id="@+id/TextViewB"/>
+
+			<TextView
+				android:layout_height="wrap_content"
+				android:text="0"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:layout_width="wrap_content"
+				android:gravity="center"
+				android:layout_marginLeft="5dp"
+				android:textSize="12sp"
+				android:id="@+id/TextViewD"/>
+
+			<TextView
+				android:layout_height="wrap_content"
+				android:text="0"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:layout_width="wrap_content"
+				android:gravity="center"
+				android:layout_marginLeft="5dp"
+				android:textSize="12sp"
+				android:id="@+id/TextViewI"/>
+
+			<TextView
+				android:layout_height="wrap_content"
+				android:text="0"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:layout_width="wrap_content"
+				android:gravity="center"
+				android:layout_marginLeft="5dp"
+				android:textSize="12sp"
+				android:id="@+id/TextViewZ"/>
+
+			<TextView
+				android:layout_height="wrap_content"
+				android:text="0"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:layout_width="wrap_content"
+				android:gravity="center"
+				android:layout_marginLeft="5dp"
+				android:textSize="12sp"
+				android:id="@+id/TextViewC"/>
+
+		</LinearLayout>
+
 		<TextView
 			android:id="@+id/TextViewInfo"
 			android:layout_width="match_parent"
@@ -205,7 +389,8 @@
 			android:id="@+id/checkBoxDebug"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:hint="@string/checkBoxDebug"/>
+			android:hint="@string/checkBoxDebug"
+			android:textAppearance="?android:attr/textAppearanceSmall"/>
 
 		<Button
 			android:id="@+id/buttonStep"
