@@ -99,7 +99,8 @@
 				android:textAppearance="?android:attr/textAppearanceSmall"
 				android:textColor="#F40000"
 				android:textSize="12sp"
-				android:gravity="center"/>
+				android:gravity="center"
+				android:textColorHighlight="#CCF800"/>
 
 			<TextView
 				android:layout_width="wrap_content"
@@ -196,7 +197,7 @@
 			android:singleLine="false"
 			android:textAppearance="?android:attr/textAppearanceSmall"
 			android:textColor="#000000"
-			android:textSize="12sp"
+			android:textSize="11sp"
 			android:typeface="monospace"
 			android:hint="Display important information"/>
 

@@ -122,8 +122,21 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				textViewInfo.setText("the size of code is " + assembler.size
 						+ "\n");
+						
 				for (int i = 0; i < assembler.size; i++) {
-					textViewInfo.append("0x"+Integer.toHexString(0x600+i)+" "+memory.cells[0x600 + i] + "\n");
+					if(i%16==0) {
+						textViewInfo.append("0x"+Integer.toHexString(0x600+i)+":  ");
+					}
+					
+					if(memory.cells[0x600+i].length()==1) {
+						textViewInfo.append("0"+memory.cells[0x600 + i] + "  ");
+					} else {
+						textViewInfo.append(memory.cells[0x600 + i] + "  ");
+					}
+						
+					if(i%16==15){
+						textViewInfo.append("\n");
+					}
 				}
 			}
 
@@ -209,19 +222,6 @@ public class MainActivity extends Activity {
 			
 				return true;
 			case R.id.menu_save:
-				String filename = "myfile";
-				String string = "Hello world!";
-				FileOutputStream outputStream;
-
-				try {
-					outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
-					outputStream.write(string.getBytes());
-					outputStream.close();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				return true;
-			case R.id.menu_settings:
 				
 				return true;
 			default:

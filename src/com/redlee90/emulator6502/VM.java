@@ -18,7 +18,6 @@ public class VM {
 	public void runStep() {
 		if (memory.cells[regPC] != null) {
 			String command = this.memory.cells[regPC++];
-			System.out.println("command is " + command);
 			int realAddr;
 			int ZPAddr;
 			int ABSAddr;
