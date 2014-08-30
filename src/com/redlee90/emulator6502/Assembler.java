@@ -12,25 +12,35 @@ public class Assembler {
 	private Memory memory;
 
 	private HashMap<String, String> ADC;
+	private HashMap<String, String> BCC;
+	private HashMap<String, String> BCS;
+	private HashMap<String, String> BEQ;
+	private HashMap<String, String> BMI;
+	private HashMap<String, String> BNE;
+	private HashMap<String, String> BPL;
+	private HashMap<String, String> BVC;
+	private HashMap<String, String> BVS;
 	private HashMap<String, String> BRK;
 	private HashMap<String, String> DEX;
 	private HashMap<String, String> DEY;
- 	private HashMap<String, String> LDA;
+	private HashMap<String, Integer> LAB;
+	private HashMap<String, String> LDA;
 	private HashMap<String, String> LDX;
 	private HashMap<String, String> LDY;
 	private HashMap<String, String> INC;
 	private HashMap<String, String> INX;
 	private HashMap<String, String> INY;
 	private HashMap<String, String> STA;
+	private HashMap<String, String> STX;
+	private HashMap<String, String> STY;
 	private HashMap<String, String> TAX;
 	private HashMap<String, String> TAY;
 	private HashMap<String, String> TXA;
 	private HashMap<String, String> TYA;
-	
- 
+
 	public Assembler(Memory memory) {
 		this.memory = memory;
-		
+
 		ADC = new HashMap<String, String>() {
 			/**
 			 * 
@@ -48,7 +58,95 @@ public class Assembler {
 				put("INDY", "71");
 			}
 		};
-		
+
+		BCC = new HashMap<String, String>() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			{
+				put("BRA", "90");
+			}
+		};
+
+		BCS = new HashMap<String, String>() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			{
+				put("BRA", "b0");
+			}
+		};
+
+		BEQ = new HashMap<String, String>() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			{
+				put("BRA", "f0");
+			}
+		};
+
+		BMI = new HashMap<String, String>() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			{
+				put("BRA", "30");
+			}
+		};
+
+		BNE = new HashMap<String, String>() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			{
+				put("BRA", "d0");
+			}
+		};
+
+		BPL = new HashMap<String, String>() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			{
+				put("BRA", "10");
+			}
+		};
+
+		BVC = new HashMap<String, String>() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			{
+				put("BRA", "50");
+			}
+		};
+
+		BVS = new HashMap<String, String>() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			{
+				put("BRA", "70");
+			}
+		};
+
 		BRK = new HashMap<String, String>() {
 			/**
 			 * 
@@ -56,10 +154,10 @@ public class Assembler {
 			private static final long serialVersionUID = 1L;
 
 			{
-				put("SNGL","00");
+				put("SNGL", "00");
 			}
 		};
-		
+
 		DEX = new HashMap<String, String>() {
 			/**
 			 * 
@@ -67,10 +165,10 @@ public class Assembler {
 			private static final long serialVersionUID = 1L;
 
 			{
-				put("SNGL","ca");
+				put("SNGL", "ca");
 			}
 		};
-		
+
 		DEY = new HashMap<String, String>() {
 			/**
 			 * 
@@ -78,7 +176,7 @@ public class Assembler {
 			private static final long serialVersionUID = 1L;
 
 			{
-				put("SNGL","88");
+				put("SNGL", "88");
 			}
 		};
 
@@ -95,28 +193,30 @@ public class Assembler {
 				put("ABSX", "fe");
 			}
 		};
-		
-		INX = new HashMap<String, String> () {
+
+		INX = new HashMap<String, String>() {
 			/**
 			 * 
 			 */
 			private static final long serialVersionUID = 1L;
 
 			{
-				put("SNGL","e8");
+				put("SNGL", "e8");
 			}
 		};
-		
-		INY = new HashMap<String, String> () {
+
+		INY = new HashMap<String, String>() {
 			/**
 			 * 
 			 */
 			private static final long serialVersionUID = 1L;
 
 			{
-				put("SNGL","c8");
+				put("SNGL", "c8");
 			}
 		};
+
+		LAB = new HashMap<String, Integer>();
 
 		LDA = new HashMap<String, String>() {
 			/**
@@ -184,52 +284,78 @@ public class Assembler {
 
 			}
 		};
-		
-		TAX = new HashMap<String ,String> () {
+
+		STX = new HashMap<String, String>() {
 			/**
 			 * 
 			 */
 			private static final long serialVersionUID = 1L;
 
 			{
-				put("SNGL","aa");
+				put("ZP", "86");
+				put("ZPY", "96");
+				put("ABS", "8e");
+
 			}
 		};
-		
-		TAY = new HashMap<String ,String> () {
+
+		STY = new HashMap<String, String>() {
 			/**
 			 * 
 			 */
 			private static final long serialVersionUID = 1L;
 
 			{
-				put("SNGL","a8");
+				put("ZP", "84");
+				put("ZPX", "94");
+				put("ABS", "8c");
+
 			}
 		};
-		
-		TXA = new HashMap<String, String> () {
+
+		TAX = new HashMap<String, String>() {
 			/**
 			 * 
 			 */
 			private static final long serialVersionUID = 1L;
 
 			{
-				put("SNGL","8a");
+				put("SNGL", "aa");
 			}
 		};
-		
-		TYA = new HashMap<String, String> () {
+
+		TAY = new HashMap<String, String>() {
 			/**
 			 * 
 			 */
 			private static final long serialVersionUID = 1L;
 
 			{
-				put("SNGL","98");
+				put("SNGL", "a8");
 			}
 		};
-		
-		
+
+		TXA = new HashMap<String, String>() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			{
+				put("SNGL", "8a");
+			}
+		};
+
+		TYA = new HashMap<String, String>() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			{
+				put("SNGL", "98");
+			}
+		};
 
 	}
 
@@ -237,6 +363,7 @@ public class Assembler {
 		this.size = 0;
 		this.defaultPC = 0x600;
 		this.assembleOK = true;
+		LAB.clear();
 	}
 
 	public void assembleCode(String code) {
@@ -244,24 +371,27 @@ public class Assembler {
 		String lines[] = code.split("\\r?\\n");
 
 		for (int i = 0; i < lines.length; i++) {
-			System.out.println("the "+i+"th line is "+"^"+lines[i]+"$");
+			System.out.println("the " + i + "th line is " + "^" + lines[i]
+					+ "$");
 			assembleLine(lines[i]);
 		}
 	}
 
 	private void assembleLine(String line) {
-		String patternImm = "(\\s*)(\\w{3})(\\s*)(#\\$)([a-f,0-9]{1,2})(\\s*;?.*)";
-		String patternZP = "(\\s*)(\\w{3})(\\s*)(\\$)([a-f,0-9]{2})([$,\\s*;.*])";
-		String patternZPX = "(\\s*)(\\w{3})(\\s*)(\\$)([a-f,0-9]{2})(\\s*,\\s*)([X,x])(\\s*;?.*)";
-		String patternZPY = "(\\s*)(\\w{3})(\\s*)(\\$)([a-f,0-9]{2})(\\s*,\\s*)([Y,y])(\\s*;?.*)";
-		String patternABS = "(\\s*)(\\w{3})(\\s*)(\\$)([a-f0-9]{3,4})(\\s*$?;?.*)";
-		String patternABSX = "(\\s*)(\\w{3})(\\s*)(\\$)([a-f,0-9]{4})(\\s*,\\s*)([X,x])(\\s*;?.*)";
-		String patternABSY = "(\\s*)(\\w{3})(\\s*)(\\$)([a-f,0-9]{4})(\\s*,\\s*)([Y,y])(\\s*;?.*)";
+		String patternImm = "(\\s*)(\\w{3})(\\s*)(#\\$)([a-f,0-9]{1,2})($|\\s*;.*)";
+		String patternZP = "(\\s*)(\\w{3})(\\s*)(\\$)([a-f,0-9]{2})($|\\s*;.*)";
+		String patternZPX = "(\\s*)(\\w{3})(\\s*)(\\$)([a-f,0-9]{2})(\\s*,\\s*)([X,x])($|\\s*;.*)";
+		String patternZPY = "(\\s*)(\\w{3})(\\s*)(\\$)([a-f,0-9]{2})(\\s*,\\s*)([Y,y])($|\\s*;.*)";
+		String patternABS = "(\\s*)(\\w{3})(\\s*)(\\$)([a-f0-9]{3,4})($|\\s*;.*)";
+		String patternABSX = "(\\s*)(\\w{3})(\\s*)(\\$)([a-f,0-9]{4})(\\s*,\\s*)([X,x])($|\\s*;.*)";
+		String patternABSY = "(\\s*)(\\w{3})(\\s*)(\\$)([a-f,0-9]{4})(\\s*,\\s*)([Y,y])($|\\s*;.*)";
 		// String patternIND =
 		// "(\\s*)(\\w{3})(\\s*)(\\()(\\s*\\$\\s*)([a-f,0-9]{4})(\\s*\\))(\\s*;?.*)";
-		String patternINDX = "(\\s*)(\\w{3})(\\s*)(\\()(\\s*\\$\\s*)([a-f,0-9]{2})(\\s*,\\s*)([X,x])(\\s*\\))(\\s*;?.*)";
-		String patternINDY = "(\\s*)(\\w{3})(\\s*)(\\()(\\s*\\$\\s*)([a-f,0-9]{2})(\\s*\\))(\\s*,\\s*)([Y,y])(\\s*;?.*)";
-		String patternSNGL = "(\\s*)(\\w{3})(\\s*$?;?.*)";
+		String patternINDX = "(\\s*)(\\w{3})(\\s*)(\\()(\\s*\\$\\s*)([a-f,0-9]{2})(\\s*,\\s*)([X,x])(\\s*\\))($|\\s*;.*)";
+		String patternINDY = "(\\s*)(\\w{3})(\\s*)(\\()(\\s*\\$\\s*)([a-f,0-9]{2})(\\s*\\))(\\s*,\\s*)([Y,y])($|\\s*;.*)";
+		String patternLAB = "(\\s*)(\\w+)(\\s*)(:)($|\\s*;.*)";
+		String patternSNGL = "(\\s*)(\\w{3})($|\\s*;.*)";
+		String patternBRA = "(\\s*)(\\w{3})(\\s+)(\\w+)($|\\s*;.*)";
 
 		// Imm
 		if (line.matches(patternImm)) {
@@ -337,6 +467,16 @@ public class Assembler {
 				this.memory.cells[defaultPC++] = ZPAddr;
 				size += 2;
 				break;
+			case "STX":
+				this.memory.cells[defaultPC++] = STX.get("ZP");
+				this.memory.cells[defaultPC++] = ZPAddr;
+				size += 2;
+				break;
+			case "STY":
+				this.memory.cells[defaultPC++] = STY.get("ZP");
+				this.memory.cells[defaultPC++] = ZPAddr;
+				size += 2;
+				break;
 			default:
 				this.assembleOK = false;
 				break;
@@ -376,6 +516,11 @@ public class Assembler {
 				this.memory.cells[defaultPC++] = ZPXAddr;
 				size += 2;
 				break;
+			case "STY":
+				this.memory.cells[defaultPC++] = STY.get("ZPX");
+				this.memory.cells[defaultPC++] = ZPXAddr;
+				size += 2;
+				break;
 			default:
 				this.assembleOK = false;
 				break;
@@ -396,6 +541,11 @@ public class Assembler {
 				this.memory.cells[defaultPC++] = ZPYAddr;
 				size += 2;
 				break;
+			case "STX":
+				this.memory.cells[defaultPC++] = STX.get("ZPY");
+				this.memory.cells[defaultPC++] = ZPYAddr;
+				size += 2;
+				break;
 			default:
 				this.assembleOK = false;
 				break;
@@ -413,38 +563,66 @@ public class Assembler {
 			switch (command) {
 			case "ADC":
 				this.memory.cells[defaultPC++] = ADC.get("ABS");
-					this.memory.cells[defaultPC++] = ABSAddr.substring(ABSAddr.length()-2);
-					this.memory.cells[defaultPC++] = ABSAddr.substring(0, ABSAddr.length()-2);
+				this.memory.cells[defaultPC++] = ABSAddr.substring(ABSAddr
+						.length() - 2);
+				this.memory.cells[defaultPC++] = ABSAddr.substring(0,
+						ABSAddr.length() - 2);
 				this.size += 3;
 				break;
 			case "INC":
 				this.memory.cells[defaultPC++] = INC.get("ABS");
-				this.memory.cells[defaultPC++] = ABSAddr.substring(ABSAddr.length()-2);
-				this.memory.cells[defaultPC++] = ABSAddr.substring(0, ABSAddr.length()-2);
+				this.memory.cells[defaultPC++] = ABSAddr.substring(ABSAddr
+						.length() - 2);
+				this.memory.cells[defaultPC++] = ABSAddr.substring(0,
+						ABSAddr.length() - 2);
 				this.size += 3;
 				break;
 			case "LDA":
 				this.memory.cells[defaultPC++] = LDA.get("ABS");
-					this.memory.cells[defaultPC++] = ABSAddr.substring(ABSAddr.length()-2);
-					this.memory.cells[defaultPC++] = ABSAddr.substring(0, ABSAddr.length()-2);
+				this.memory.cells[defaultPC++] = ABSAddr.substring(ABSAddr
+						.length() - 2);
+				this.memory.cells[defaultPC++] = ABSAddr.substring(0,
+						ABSAddr.length() - 2);
 				this.size += 3;
 				break;
 			case "LDX":
 				this.memory.cells[defaultPC++] = LDX.get("ABS");
-					this.memory.cells[defaultPC++] = ABSAddr.substring(ABSAddr.length()-2);
-					this.memory.cells[defaultPC++] = ABSAddr.substring(0, ABSAddr.length()-2);
+				this.memory.cells[defaultPC++] = ABSAddr.substring(ABSAddr
+						.length() - 2);
+				this.memory.cells[defaultPC++] = ABSAddr.substring(0,
+						ABSAddr.length() - 2);
 				this.size += 3;
 				break;
 			case "LDY":
 				this.memory.cells[defaultPC++] = LDY.get("ABS");
-					this.memory.cells[defaultPC++] = ABSAddr.substring(ABSAddr.length()-2);
-					this.memory.cells[defaultPC++] = ABSAddr.substring(0, ABSAddr.length()-2);
+				this.memory.cells[defaultPC++] = ABSAddr.substring(ABSAddr
+						.length() - 2);
+				this.memory.cells[defaultPC++] = ABSAddr.substring(0,
+						ABSAddr.length() - 2);
 				this.size += 3;
 				break;
 			case "STA":
 				this.memory.cells[defaultPC++] = STA.get("ABS");
-					this.memory.cells[defaultPC++] = ABSAddr.substring(ABSAddr.length()-2);
-					this.memory.cells[defaultPC++] = ABSAddr.substring(0, ABSAddr.length()-2);
+				this.memory.cells[defaultPC++] = ABSAddr.substring(ABSAddr
+						.length() - 2);
+				this.memory.cells[defaultPC++] = ABSAddr.substring(0,
+						ABSAddr.length() - 2);
+				this.size += 3;
+				break;
+			case "STX":
+				this.memory.cells[defaultPC++] = STX.get("ABS");
+				this.memory.cells[defaultPC++] = ABSAddr.substring(ABSAddr
+						.length() - 2);
+				this.memory.cells[defaultPC++] = ABSAddr.substring(0,
+						ABSAddr.length() - 2);
+				this.size += 3;
+				break;
+			case "STY":
+				this.memory.cells[defaultPC++] = STY.get("ABS");
+				this.memory.cells[defaultPC++] = ABSAddr.substring(ABSAddr
+						.length() - 2);
+				this.memory.cells[defaultPC++] = ABSAddr.substring(0,
+						ABSAddr.length() - 2);
 				this.size += 3;
 				break;
 			default:
@@ -463,32 +641,42 @@ public class Assembler {
 			switch (command) {
 			case "ADC":
 				this.memory.cells[defaultPC++] = ADC.get("ABSX");
-					this.memory.cells[defaultPC++] = ABSXAddr.substring(ABSXAddr.length()-2);
-					this.memory.cells[defaultPC++] = ABSXAddr.substring(0, ABSXAddr.length()-2);
+				this.memory.cells[defaultPC++] = ABSXAddr.substring(ABSXAddr
+						.length() - 2);
+				this.memory.cells[defaultPC++] = ABSXAddr.substring(0,
+						ABSXAddr.length() - 2);
 				this.size += 3;
 				break;
 			case "INC":
 				this.memory.cells[defaultPC++] = INC.get("ABSX");
-				this.memory.cells[defaultPC++] = ABSXAddr.substring(ABSXAddr.length()-2);
-					this.memory.cells[defaultPC++] = ABSXAddr.substring(0, ABSXAddr.length()-2);
+				this.memory.cells[defaultPC++] = ABSXAddr.substring(ABSXAddr
+						.length() - 2);
+				this.memory.cells[defaultPC++] = ABSXAddr.substring(0,
+						ABSXAddr.length() - 2);
 				this.size += 3;
 				break;
 			case "LDA":
 				this.memory.cells[defaultPC++] = LDA.get("ABSX");
-					this.memory.cells[defaultPC++] = ABSXAddr.substring(ABSXAddr.length()-2);
-					this.memory.cells[defaultPC++] = ABSXAddr.substring(0, ABSXAddr.length()-2);
+				this.memory.cells[defaultPC++] = ABSXAddr.substring(ABSXAddr
+						.length() - 2);
+				this.memory.cells[defaultPC++] = ABSXAddr.substring(0,
+						ABSXAddr.length() - 2);
 				this.size += 3;
 				break;
 			case "LDY":
 				this.memory.cells[defaultPC++] = LDY.get("ABSX");
-					this.memory.cells[defaultPC++] = ABSXAddr.substring(ABSXAddr.length()-2);
-					this.memory.cells[defaultPC++] = ABSXAddr.substring(0, ABSXAddr.length()-2);
+				this.memory.cells[defaultPC++] = ABSXAddr.substring(ABSXAddr
+						.length() - 2);
+				this.memory.cells[defaultPC++] = ABSXAddr.substring(0,
+						ABSXAddr.length() - 2);
 				this.size += 3;
 				break;
 			case "STA":
 				this.memory.cells[defaultPC++] = STA.get("ABSX");
-					this.memory.cells[defaultPC++] = ABSXAddr.substring(ABSXAddr.length()-2);
-					this.memory.cells[defaultPC++] = ABSXAddr.substring(0, ABSXAddr.length()-2);
+				this.memory.cells[defaultPC++] = ABSXAddr.substring(ABSXAddr
+						.length() - 2);
+				this.memory.cells[defaultPC++] = ABSXAddr.substring(0,
+						ABSXAddr.length() - 2);
 				this.size += 3;
 				break;
 			default:
@@ -508,26 +696,34 @@ public class Assembler {
 			switch (command) {
 			case "ADC":
 				this.memory.cells[defaultPC++] = ADC.get("ABSY");
-				this.memory.cells[defaultPC++] = ABSYAddr.substring(ABSYAddr.length()-2);
-				this.memory.cells[defaultPC++] = ABSYAddr.substring(0, ABSYAddr.length()-2);
+				this.memory.cells[defaultPC++] = ABSYAddr.substring(ABSYAddr
+						.length() - 2);
+				this.memory.cells[defaultPC++] = ABSYAddr.substring(0,
+						ABSYAddr.length() - 2);
 				this.size += 3;
 				break;
 			case "LDA":
 				this.memory.cells[defaultPC++] = LDA.get("ABSY");
-				this.memory.cells[defaultPC++] = ABSYAddr.substring(ABSYAddr.length()-2);
-				this.memory.cells[defaultPC++] = ABSYAddr.substring(0, ABSYAddr.length()-2);
+				this.memory.cells[defaultPC++] = ABSYAddr.substring(ABSYAddr
+						.length() - 2);
+				this.memory.cells[defaultPC++] = ABSYAddr.substring(0,
+						ABSYAddr.length() - 2);
 				this.size += 3;
 				break;
 			case "LDX":
 				this.memory.cells[defaultPC++] = LDX.get("ABSY");
-				this.memory.cells[defaultPC++] = ABSYAddr.substring(ABSYAddr.length()-2);
-				this.memory.cells[defaultPC++] = ABSYAddr.substring(0, ABSYAddr.length()-2);
+				this.memory.cells[defaultPC++] = ABSYAddr.substring(ABSYAddr
+						.length() - 2);
+				this.memory.cells[defaultPC++] = ABSYAddr.substring(0,
+						ABSYAddr.length() - 2);
 				this.size += 3;
 				break;
 			case "STA":
 				this.memory.cells[defaultPC++] = STA.get("ABSY");
-				this.memory.cells[defaultPC++] = ABSYAddr.substring(ABSYAddr.length()-2);
-				this.memory.cells[defaultPC++] = ABSYAddr.substring(0, ABSYAddr.length()-2);
+				this.memory.cells[defaultPC++] = ABSYAddr.substring(ABSYAddr
+						.length() - 2);
+				this.memory.cells[defaultPC++] = ABSYAddr.substring(0,
+						ABSYAddr.length() - 2);
 				this.size += 3;
 				break;
 			default:
@@ -603,7 +799,21 @@ public class Assembler {
 				break;
 			}
 		}
-		
+
+		// LAB
+		else if (line.matches(patternLAB)) {
+			System.out.println(line + " matches LAB");
+			String label = line.replaceAll(patternLAB, "$2");
+			if (!LAB.containsKey(label)) {
+				LAB.put(label, defaultPC);
+			} else {
+				int ABSAddr = LAB.get(label);
+				memory.cells[ABSAddr] = Integer.toHexString(defaultPC & 0xff);
+				memory.cells[ABSAddr + 1] = Integer.toHexString(defaultPC >> 8);
+			}
+
+		}
+
 		// SNGL
 		else if (line.matches(patternSNGL)) {
 			System.out.println(line + " matches SNGL");
@@ -646,11 +856,134 @@ public class Assembler {
 				size += 1;
 				break;
 			default:
-				this.assembleOK=false;
+				this.assembleOK = false;
 				break;
-			
-			}			
+
+			}
 		}
+
+		else if (line.matches(patternBRA)) {
+			System.out.println(line + " matches BRA");
+			StringTokenizer st = new StringTokenizer(line.replaceAll(
+					patternINDY, "$2 $4"));
+			String command = st.nextToken();
+			String label = st.nextToken();
+			switch (command) {
+			case "BCC":
+				memory.cells[defaultPC++] = BCC.get("BRA");
+				if (LAB.containsKey(label)) {
+					int value = LAB.get(label);
+					memory.cells[defaultPC++] = Integer
+							.toHexString(value & 0xff);
+					memory.cells[defaultPC++] = Integer.toHexString(value >> 8);
+				} else {
+					LAB.put(label, defaultPC);
+					memory.cells[defaultPC++] = null;
+					memory.cells[defaultPC++] = null;
+				}
+				size += 3;
+				break;
+			case "BCS":
+				memory.cells[defaultPC++] = BCS.get("BRA");
+				if (LAB.containsKey(label)) {
+					int value = LAB.get(label);
+					memory.cells[defaultPC++] = Integer
+							.toHexString(value & 0xff);
+					memory.cells[defaultPC++] = Integer.toHexString(value >> 8);
+				} else {
+					LAB.put(label, defaultPC);
+					memory.cells[defaultPC++] = null;
+					memory.cells[defaultPC++] = null;
+				}
+				size += 3;
+				break;
+			case "BEQ":
+				memory.cells[defaultPC++] = BEQ.get("BRA");
+				if (LAB.containsKey(label)) {
+					int value = LAB.get(label);
+					memory.cells[defaultPC++] = Integer
+							.toHexString(value & 0xff);
+					memory.cells[defaultPC++] = Integer.toHexString(value >> 8);
+				} else {
+					LAB.put(label, defaultPC);
+					memory.cells[defaultPC++] = null;
+					memory.cells[defaultPC++] = null;
+				}
+				size += 3;
+				break;
+			case "BMI":
+				memory.cells[defaultPC++] = BMI.get("BRA");
+				if (LAB.containsKey(label)) {
+					int value = LAB.get(label);
+					memory.cells[defaultPC++] = Integer
+							.toHexString(value & 0xff);
+					memory.cells[defaultPC++] = Integer.toHexString(value >> 8);
+				} else {
+					LAB.put(label, defaultPC);
+					memory.cells[defaultPC++] = null;
+					memory.cells[defaultPC++] = null;
+				}
+				size += 3;
+				break;
+			case "BNE":
+				memory.cells[defaultPC++] = BNE.get("BRA");
+				if (LAB.containsKey(label)) {
+					int value = LAB.get(label);
+					memory.cells[defaultPC++] = Integer
+							.toHexString(value & 0xff);
+					memory.cells[defaultPC++] = Integer.toHexString(value >> 8);
+				} else {
+					LAB.put(label, defaultPC);
+					memory.cells[defaultPC++] = null;
+					memory.cells[defaultPC++] = null;
+				}
+				size += 3;
+				break;
+			case "BPL":
+				memory.cells[defaultPC++] = BPL.get("BRA");
+				if (LAB.containsKey(label)) {
+					int value = LAB.get(label);
+					memory.cells[defaultPC++] = Integer
+							.toHexString(value & 0xff);
+					memory.cells[defaultPC++] = Integer.toHexString(value >> 8);
+				} else {
+					LAB.put(label, defaultPC);
+					memory.cells[defaultPC++] = null;
+					memory.cells[defaultPC++] = null;
+				}
+				size += 3;
+				break;
+			case "BVC":
+				memory.cells[defaultPC++] = BVC.get("BRA");
+				if (LAB.containsKey(label)) {
+					int value = LAB.get(label);
+					memory.cells[defaultPC++] = Integer
+							.toHexString(value & 0xff);
+					memory.cells[defaultPC++] = Integer.toHexString(value >> 8);
+				} else {
+					LAB.put(label, defaultPC);
+					memory.cells[defaultPC++] = null;
+					memory.cells[defaultPC++] = null;
+				}
+				size += 3;
+				break;
+			case "BVS":
+				memory.cells[defaultPC++] = BVS.get("BRA");
+				if (LAB.containsKey(label)) {
+					int value = LAB.get(label);
+					memory.cells[defaultPC++] = Integer
+							.toHexString(value & 0xff);
+					memory.cells[defaultPC++] = Integer.toHexString(value >> 8);
+				} else {
+					LAB.put(label, defaultPC);
+					memory.cells[defaultPC++] = null;
+					memory.cells[defaultPC++] = null;
+				}
+				size += 3;
+				break;
+			}
+		}
+
 		// Syntax error
 		else {
 			this.assembleOK = false;

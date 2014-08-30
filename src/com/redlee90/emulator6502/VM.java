@@ -122,10 +122,18 @@ public class VM {
 				INDAddrPart2 = Integer.parseInt(memory.cells[INDAddr + 1], 16);
 				realAddr = INDAddrPart1 + INDAddrPart2 << 8;
 				memory.cells[realAddr] = regA;
-				break;			
+				break;		
+			case "84": // STY, ZP
+				realAddr = getZPAddr();
+				memory.cells[realAddr] = regY;				
+				break;
 			case "85": // STA, ZP
 				realAddr = getZPAddr();
 				memory.cells[realAddr] = regA;				
+				break;
+			case "86": // STX, ZP
+				realAddr = getZPAddr();
+				memory.cells[realAddr] = regX;				
 				break;
 			case "88": // DEY, SNGL
 				regY = Integer.toHexString(Integer.parseInt(regY,16)-1);
@@ -133,10 +141,18 @@ public class VM {
 			case "8a": // TXA, SNGL
 				regA = regX;
 				MainActivity.showEditTextA(regA);
-				break;				
+				break;			
+			case "8c": // STY, ABS
+				realAddr = getABSAddr();
+				memory.cells[realAddr] = regY;
+				break;
 			case "8d": //STA, ABS
 				realAddr = getABSAddr();
 				memory.cells[realAddr] = regA;
+				break;
+			case "8e": // STX, ABS
+				realAddr = getABSAddr();
+				memory.cells[realAddr] = regX;
 				break;
 			case "91": //STA, INDY
 				ZPAddr = getZPAddr();
@@ -146,12 +162,24 @@ public class VM {
 				INDAddrPart2 = Integer.parseInt(memory.cells[INDAddr + 1]);
 				realAddr = INDAddrPart1 + valueY + INDAddrPart2 << 8;
 				memory.cells[realAddr] = regA;
-				break;			
+				break;	
+			case "94": // STY, ZPX
+				ZPAddr = getZPAddr();
+				valueX = getValueX();
+				realAddr = ZPAddr + valueX;
+				memory.cells[realAddr] = regY;
+				break;
 			case "95": // STA, ZPX
 				ZPAddr = getZPAddr();
 				valueX = getValueX();
 				realAddr = ZPAddr + valueX;
 				memory.cells[realAddr] = regA;
+				break;
+			case "96": // STX, ZPY
+				ZPAddr = getZPAddr();
+				valueY = getValueY();
+				realAddr = ZPAddr + valueY;
+				memory.cells[realAddr] = regX;
 				break;
 			case "98": // TYA, SNGL
 				regA = regY;
