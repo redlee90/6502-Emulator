@@ -77,7 +77,7 @@ public class VM {
 				addend = Integer.parseInt(memory.cells[realAddr], 16);
 				afterADC = beforeADC + addend;
 				regA = Integer.toHexString(afterADC);
-				MainActivity.showEditTextA(regA);
+				MainActivity.showTextViewA(regA);
 				break;
 			case "65": // ADC, ZP
 				realAddr = popByte();
@@ -85,14 +85,14 @@ public class VM {
 				addend = Integer.parseInt(memory.cells[realAddr], 16);
 				afterADC = beforeADC + addend;
 				regA = Integer.toHexString(afterADC);
-				MainActivity.showEditTextA(regA);
+				MainActivity.showTextViewA(regA);
 				break;
 			case "69": // ADC, Imm
 				beforeADC = Integer.parseInt(regA, 16);
 				addend = Integer.parseInt(memory.cells[regPC++], 16);
 				afterADC = beforeADC + addend;
 				regA = Integer.toHexString(afterADC);
-				MainActivity.showEditTextA(regA);
+				MainActivity.showTextViewA(regA);
 				break;
 			case "6d": // ADC, ABS
 				realAddr = popWord();
@@ -100,7 +100,7 @@ public class VM {
 				addend = Integer.parseInt(memory.cells[realAddr], 16);
 				afterADC = beforeADC + addend;
 				regA = Integer.toHexString(afterADC);
-				MainActivity.showEditTextA(regA);
+				MainActivity.showTextViewA(regA);
 				break;
 			case "70": // BVS, BRA
 				offset = popByte();
@@ -119,7 +119,7 @@ public class VM {
 				addend = Integer.parseInt(memory.cells[realAddr], 16);
 				afterADC = beforeADC + addend;
 				regA = Integer.toHexString(afterADC);
-				MainActivity.showEditTextA(regA);
+				MainActivity.showTextViewA(regA);
 				break;
 			case "75": // ADC, ZPX
 				ZPAddr = popByte();
@@ -129,7 +129,7 @@ public class VM {
 				addend = Integer.parseInt(memory.cells[realAddr], 16);
 				afterADC = beforeADC + addend;
 				regA = Integer.toHexString(afterADC);
-				MainActivity.showEditTextA(regA);
+				MainActivity.showTextViewA(regA);
 				break;
 			case "79": // ADC, ABSY
 				ABSAddr = popWord();
@@ -139,7 +139,7 @@ public class VM {
 				addend = Integer.parseInt(memory.cells[realAddr], 16);
 				afterADC = beforeADC + addend;
 				regA = Integer.toHexString(afterADC);
-				MainActivity.showEditTextA(regA);
+				MainActivity.showTextViewA(regA);
 				break;
 			case "7d": // ADC, ABSX
 				ABSAddr = popWord();
@@ -149,7 +149,7 @@ public class VM {
 				addend = Integer.parseInt(memory.cells[realAddr], 16);
 				afterADC = beforeADC + addend;
 				regA = Integer.toHexString(afterADC);
-				MainActivity.showEditTextA(regA);
+				MainActivity.showTextViewA(regA);
 				break;
 			case "81": // STA, INDX
 				ZPAddr = popByte();
@@ -181,7 +181,7 @@ public class VM {
 				break;
 			case "8a": // TXA, SNGL
 				regA = regX;
-				MainActivity.showEditTextA(regA);
+				MainActivity.showTextViewA(regA);
 				break;
 			case "8c": // STY, ABS
 				realAddr = popWord();
@@ -230,7 +230,7 @@ public class VM {
 				break;
 			case "98": // TYA, SNGL
 				regA = regY;
-				MainActivity.showEditTextA(regA);
+				MainActivity.showTextViewA(regA);
 				break;
 			case "99": // STA, ABSY
 				ABSAddr = popWord();
@@ -246,7 +246,7 @@ public class VM {
 				break;
 			case "a0": // LDY, Imm
 				regY = memory.cells[regPC++];
-				MainActivity.showEditTextY(regY);
+				MainActivity.showTextViewY(regY);
 				break;
 			case "a1": // LDA, INDX
 				ZPAddr = popByte();
@@ -256,52 +256,52 @@ public class VM {
 				INDAddrPart2 = Integer.parseInt(memory.cells[INDAddr + 1], 16);
 				realAddr = INDAddrPart1 + INDAddrPart2 << 8;
 				regA = getValueFromMem(realAddr);
-				MainActivity.showEditTextA(regA);
+				MainActivity.showTextViewA(regA);
 				break;
 			case "a2": // LDX, Imm
 				regX = memory.cells[regPC++];
-				MainActivity.showEditTextX(regX);
+				MainActivity.showTextViewX(regX);
 				break;
 			case "a4": // LDY, ZP
 				realAddr = popByte();
 				regY = getValueFromMem(realAddr);
-				MainActivity.showEditTextY(regY);
+				MainActivity.showTextViewY(regY);
 				break;
 			case "a5":
 				regA = memory.cells[Integer.parseInt(memory.cells[regPC++], 16)];
-				MainActivity.showEditTextA(regA);
+				MainActivity.showTextViewA(regA);
 				break;
 			case "a6": // LDX, ZP
 				realAddr = popByte();
 				regX = getValueFromMem(realAddr);
-				MainActivity.showEditTextX(regX);
+				MainActivity.showTextViewX(regX);
 				break;
 			case "a8": // TAY, SNGL
 				regY = regA;
-				MainActivity.showEditTextY(regY);
+				MainActivity.showTextViewY(regY);
 				break;
 			case "a9": // LDA, Imm
 				regA = memory.cells[regPC++];
-				MainActivity.showEditTextA(regA);
+				MainActivity.showTextViewA(regA);
 				break;
 			case "aa": // TAX, SNGL
 				regX = regA;
-				MainActivity.showEditTextX(regX);
+				MainActivity.showTextViewX(regX);
 				break;
 			case "ac": // LDY, ABS
 				realAddr = popWord();
 				regY = getValueFromMem(realAddr);
-				MainActivity.showEditTextY(regY);
+				MainActivity.showTextViewY(regY);
 				break;
 			case "ad": // LDA, ABS
 				realAddr = popWord();
 				regA = getValueFromMem(realAddr);
-				MainActivity.showEditTextA(regA);
+				MainActivity.showTextViewA(regA);
 				break;
 			case "ae": // LDX, ABS
 				realAddr = popWord();
 				regX = getValueFromMem(realAddr);
-				MainActivity.showEditTextX(regX);
+				MainActivity.showTextViewX(regX);
 				break;
 			case "b0": // BCS, BRA
 				offset = popByte();
@@ -317,28 +317,28 @@ public class VM {
 				INDAddrPart2 = Integer.parseInt(memory.cells[INDAddr + 1]);
 				realAddr = INDAddrPart1 + valueY + INDAddrPart2 << 8;
 				regA = getValueFromMem(realAddr);
-				MainActivity.showEditTextA(regA);
+				MainActivity.showTextViewA(regA);
 				break;
 			case "b4": // LDY, ZPX
 				ZPAddr = popByte();
 				valueX = getValueX();
 				realAddr = ZPAddr + valueX;
 				regY = getValueFromMem(realAddr);
-				MainActivity.showEditTextY(regY);
+				MainActivity.showTextViewY(regY);
 				break;
 			case "b5": // LDA, ZPX
 				ZPAddr = popByte();
 				valueX = getValueX();
 				realAddr = ZPAddr + valueX;
 				regA = getValueFromMem(realAddr);
-				MainActivity.showEditTextA(regA);
+				MainActivity.showTextViewA(regA);
 				break;
 			case "b6": // LDX, ZPY
 				ZPAddr = popByte();
 				valueY = getValueY();
 				realAddr = ZPAddr + valueY;
 				regX = getValueFromMem(realAddr);
-				MainActivity.showEditTextX(regX);
+				MainActivity.showTextViewX(regX);
 				break;
 			case "b8": // CLV, SNGL
 				regP &= 0xbf;
@@ -349,32 +349,32 @@ public class VM {
 				valueY = getValueY();
 				realAddr = ABSAddr + valueY;
 				regA = getValueFromMem(realAddr);
-				MainActivity.showEditTextA(regA);
+				MainActivity.showTextViewA(regA);
 				break;
 			case "bc": // LDY, ABSX
 				ABSAddr = popWord();
 				valueX = getValueX();
 				realAddr = ABSAddr + valueX;
 				regY = getValueFromMem(realAddr);
-				MainActivity.showEditTextY(regY);
+				MainActivity.showTextViewY(regY);
 				break;
 			case "bd": // LDA, ABSX
 				ABSAddr = popWord();
 				valueX = getValueX();
 				realAddr = ABSAddr + valueX;
 				regA = getValueFromMem(realAddr);
-				MainActivity.showEditTextA(regA);
+				MainActivity.showTextViewA(regA);
 				break;
 			case "be": // LDX, ABSY
 				ABSAddr = popWord();
 				valueY = getValueY();
 				realAddr = ABSAddr + valueY;
 				regX = getValueFromMem(realAddr);
-				MainActivity.showEditTextX(regX);
+				MainActivity.showTextViewX(regX);
 				break;
 			case "c8": // INY, SNGL
 				regY = Integer.toHexString(Integer.parseInt(regY, 16) + 1);
-				MainActivity.showEditTextY(regY);
+				MainActivity.showTextViewY(regY);
 				break;
 			case "ca": // DEX, SNGL
 				regX = Integer.toHexString(Integer.parseInt(regX, 16) - 1);
@@ -397,7 +397,7 @@ public class VM {
 				break;
 			case "e8": // INX, SNGL
 				regX = Integer.toHexString(Integer.parseInt(regX, 16) + 1);
-				MainActivity.showEditTextX(regX);
+				MainActivity.showTextViewX(regX);
 				break;
 			case "ee": // INC, ABS
 				realAddr = popWord();
@@ -435,7 +435,7 @@ public class VM {
 				break;
 			}
 
-			MainActivity.showEditTextPC("0x" + Integer.toHexString(regPC));
+			MainActivity.showTextViewPC("0x" + Integer.toHexString(regPC));
 		} else {
 			MainActivity
 					.showTextViewInfo("Debugger has reached the end of the code!");

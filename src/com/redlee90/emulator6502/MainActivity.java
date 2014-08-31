@@ -32,10 +32,11 @@ public class MainActivity extends Activity {
 	private static TextView textViewC;
 
 	private EditText editTextCode;
-	private static EditText editTextA;
-	private static EditText editTextX;
-	private static EditText editTextY;
-	private static EditText editTextPC;
+	private static TextView textViewA;
+	private static TextView textViewX;
+	private static TextView textViewY;
+	private static TextView textViewSP;
+	private static TextView textViewPC;
 
 	private CheckBox checkBoxDebug;
 
@@ -67,10 +68,10 @@ public class MainActivity extends Activity {
 		textViewC = (TextView) findViewById(R.id.TextViewC);
 
 		editTextCode = (EditText) findViewById(R.id.EditTextCode);
-		editTextA = (EditText) findViewById(R.id.EditTextA);
-		editTextX = (EditText) findViewById(R.id.EditTextX);
-		editTextY = (EditText) findViewById(R.id.EditTextY);
-		editTextPC = (EditText) findViewById(R.id.EditTextPC);
+		textViewA = (TextView) findViewById(R.id.TextViewA);
+		textViewX = (TextView) findViewById(R.id.TextViewX);
+		textViewY = (TextView) findViewById(R.id.TextViewY);
+		textViewPC = (TextView) findViewById(R.id.TextViewPC);
 
 		checkBoxDebug = (CheckBox) findViewById(R.id.checkBoxDebug);
 
@@ -121,10 +122,10 @@ public class MainActivity extends Activity {
 				assembler.reset();
 				vm.reset();
 				ppu.invalidate();
-				editTextA.setText("");
-				editTextX.setText("");
-				editTextY.setText("");
-				editTextPC.setText("");
+				textViewA.setText("");
+				textViewX.setText("");
+				textViewY.setText("");
+				textViewPC.setText("");
 				textViewInfo.setText("Reset successfully");
 			}
 
@@ -184,20 +185,20 @@ public class MainActivity extends Activity {
 
 	}
 
-	public static void showEditTextA(String message) {
-		editTextA.setText(message);
+	public static void showTextViewA(String message) {
+		textViewA.setText(message);
 	}
 
-	public static void showEditTextX(String message) {
-		editTextX.setText(message);
+	public static void showTextViewX(String message) {
+		textViewX.setText(message);
 	}
 
-	public static void showEditTextY(String message) {
-		editTextY.setText(message);
+	public static void showTextViewY(String message) {
+		textViewY.setText(message);
 	}
 
-	public static void showEditTextPC(String message) {
-		editTextPC.setText(message);
+	public static void showTextViewPC(String message) {
+		textViewPC.setText(message);
 	}
 
 	public static void showTextViewInfo(String message) {
