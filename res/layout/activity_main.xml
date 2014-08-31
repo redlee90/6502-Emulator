@@ -76,6 +76,13 @@
 		android:orientation="vertical">
 
 		<LinearLayout
+			android:layout_height="wrap_content"
+			android:background="@drawable/backwithborder"
+			android:layout_width="match_parent"
+			android:orientation="vertical">
+			
+			
+		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginTop="10dp"
@@ -187,8 +194,7 @@
 			android:layout_height="wrap_content"
 			android:layout_width="match_parent"
 			android:orientation="horizontal"
-			android:gravity="center"
-			android:layout_marginTop="10dp">
+			android:gravity="center">
 
 			<TextView
 				android:layout_height="wrap_content"
@@ -366,7 +372,11 @@
 				android:id="@+id/TextViewC"/>
 
 		</LinearLayout>
-
+		
+			
+		</LinearLayout>
+		
+		
 		<TextView
 			android:id="@+id/TextViewInfo"
 			android:layout_width="match_parent"
@@ -384,7 +394,7 @@
 			android:textSize="11sp"
 			android:typeface="monospace"
 			android:hint="Display important information"/>
-
+		
 		<CheckBox
 			android:id="@+id/checkBoxDebug"
 			android:layout_width="wrap_content"
@@ -398,7 +408,7 @@
 			android:layout_height="wrap_content"
 			android:text="@string/buttonStep"
 			android:visibility="gone"/>
-
+		
 	</LinearLayout>
 
 </RelativeLayout>
