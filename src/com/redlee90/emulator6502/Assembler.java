@@ -27,7 +27,7 @@ public class Assembler {
 	private HashMap<String, String> CLV;
 	private HashMap<String, String> SEC;
 	private HashMap<String, String> SED;
-	private HashMap<String, String> SEI;	
+	private HashMap<String, String> SEI;
 	private HashMap<String, String> DEX;
 	private HashMap<String, String> DEY;
 	private HashMap<String, Integer> LAB;
@@ -164,46 +164,46 @@ public class Assembler {
 				put("SNGL", "00");
 			}
 		};
-		
+
 		CLC = new HashMap<String, String>() {
 			{
-				put("SNGL","18");
+				put("SNGL", "18");
 			}
 		};
-		
+
 		CLD = new HashMap<String, String>() {
 			{
-				put("SNGL","d8");
+				put("SNGL", "d8");
 			}
 		};
-		
+
 		CLI = new HashMap<String, String>() {
 			{
-				put("SNGL","58");
+				put("SNGL", "58");
 			}
 		};
-		
+
 		CLV = new HashMap<String, String>() {
 			{
-				put("SNGL","b8");
+				put("SNGL", "b8");
 			}
 		};
-		
+
 		SEC = new HashMap<String, String>() {
 			{
-				put("SNGL","38");
+				put("SNGL", "38");
 			}
 		};
-		
+
 		SED = new HashMap<String, String>() {
 			{
-				put("SNGL","f8");
+				put("SNGL", "f8");
 			}
 		};
-		
+
 		SEI = new HashMap<String, String>() {
 			{
-				put("SNGL","78");
+				put("SNGL", "78");
 			}
 		};
 
@@ -856,7 +856,7 @@ public class Assembler {
 			if (!LAB.containsKey(label)) {
 				LAB.put(label, defaultPC);
 			} else {
-				int offset = defaultPC-LAB.get(label);
+				int offset = defaultPC - LAB.get(label);
 				memory.cells[LAB.get(label)] = Integer.toHexString(offset);
 			}
 
@@ -951,7 +951,7 @@ public class Assembler {
 				if (LAB.containsKey(label)) {
 					int offset = defaultPC - LAB.get(label);
 					memory.cells[defaultPC++] = Integer
-							.toHexString(0x0100-offset);
+							.toHexString(0x0100 - offset);
 				} else {
 					LAB.put(label, defaultPC);
 					memory.cells[defaultPC++] = null;
@@ -963,7 +963,7 @@ public class Assembler {
 				if (LAB.containsKey(label)) {
 					int offset = defaultPC - LAB.get(label);
 					memory.cells[defaultPC++] = Integer
-							.toHexString(0x0100-offset);
+							.toHexString(0x0100 - offset);
 				} else {
 					LAB.put(label, defaultPC);
 					memory.cells[defaultPC++] = null;
@@ -975,7 +975,7 @@ public class Assembler {
 				if (LAB.containsKey(label)) {
 					int offset = defaultPC - LAB.get(label);
 					memory.cells[defaultPC++] = Integer
-							.toHexString(0x0100-offset);
+							.toHexString(0x0100 - offset);
 				} else {
 					LAB.put(label, defaultPC);
 					memory.cells[defaultPC++] = null;
@@ -987,7 +987,7 @@ public class Assembler {
 				if (LAB.containsKey(label)) {
 					int offset = defaultPC - LAB.get(label);
 					memory.cells[defaultPC++] = Integer
-							.toHexString(0x0100-offset);
+							.toHexString(0x0100 - offset);
 				} else {
 					LAB.put(label, defaultPC);
 					memory.cells[defaultPC++] = null;
@@ -999,7 +999,7 @@ public class Assembler {
 				if (LAB.containsKey(label)) {
 					int offset = defaultPC - LAB.get(label);
 					memory.cells[defaultPC++] = Integer
-							.toHexString(0x0100-offset);
+							.toHexString(0x0100 - offset);
 				} else {
 					LAB.put(label, defaultPC);
 					memory.cells[defaultPC++] = null;
@@ -1011,7 +1011,7 @@ public class Assembler {
 				if (LAB.containsKey(label)) {
 					int offset = defaultPC - LAB.get(label);
 					memory.cells[defaultPC++] = Integer
-							.toHexString(0x0100-offset);
+							.toHexString(0x0100 - offset);
 				} else {
 					LAB.put(label, defaultPC);
 					memory.cells[defaultPC++] = null;
@@ -1023,7 +1023,7 @@ public class Assembler {
 				if (LAB.containsKey(label)) {
 					int offset = defaultPC - LAB.get(label);
 					memory.cells[defaultPC++] = Integer
-							.toHexString(0x0100-offset);
+							.toHexString(0x0100 - offset);
 				} else {
 					LAB.put(label, defaultPC);
 					memory.cells[defaultPC++] = null;
@@ -1035,7 +1035,7 @@ public class Assembler {
 				if (LAB.containsKey(label)) {
 					int offset = defaultPC - LAB.get(label);
 					memory.cells[defaultPC++] = Integer
-							.toHexString(0x0100-offset);
+							.toHexString(0x0100 - offset);
 				} else {
 					LAB.put(label, defaultPC);
 					memory.cells[defaultPC++] = null;

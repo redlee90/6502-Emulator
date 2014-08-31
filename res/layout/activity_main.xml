@@ -1,415 +1,401 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:id="@+id/relativeLayout"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:animateLayoutChanges="true"
-	android:paddingBottom="@dimen/activity_vertical_margin"
-	android:paddingLeft="@dimen/activity_horizontal_margin"
-	android:paddingRight="@dimen/activity_horizontal_margin"
-	android:paddingTop="@dimen/activity_vertical_margin"
-	tools:context=".MainActivity">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity" >
 
-	<Button
-		android:id="@+id/buttonAssemble"
-		android:layout_width="80dp"
-		android:layout_height="40dp"
-		android:text="@string/buttonAssemble"
-		android:textSize="12sp">
+    <Button
+        android:id="@+id/buttonAssemble"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:text="@string/buttonAssemble"
+        android:textSize="12sp" >
+    </Button>
 
-	</Button>
+    <Button
+        android:id="@+id/buttonRun"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_toEndOf="@+id/buttonAssemble"
+        android:layout_toRightOf="@+id/buttonAssemble"
+        android:text="@string/buttonRun"
+        android:textSize="12sp" >
+    </Button>
 
-	<Button
-		android:id="@+id/buttonRun"
-		android:layout_width="80dp"
-		android:layout_height="40dp"
-		android:layout_toEndOf="@+id/buttonAssemble"
-		android:layout_toRightOf="@+id/buttonAssemble"
-		android:text="@string/buttonRun"
-		android:textSize="12sp">
+    <Button
+        android:id="@+id/buttonReset"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_toEndOf="@+id/buttonRun"
+        android:layout_toRightOf="@+id/buttonRun"
+        android:text="@string/buttonReset"
+        android:textSize="12sp" >
+    </Button>
 
-	</Button>
+    <Button
+        android:id="@+id/buttonHexdump"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_toEndOf="@+id/buttonReset"
+        android:layout_toRightOf="@+id/buttonReset"
+        android:text="@string/buttonHexdump"
+        android:textSize="12sp" >
+    </Button>
 
-	<Button
-		android:id="@+id/buttonReset"
-		android:layout_width="80dp"
-		android:layout_height="40dp"
-		android:layout_toEndOf="@+id/buttonRun"
-		android:layout_toRightOf="@+id/buttonRun"
-		android:text="@string/buttonReset"
-		android:textSize="12sp">
+    <EditText
+        android:id="@+id/EditTextCode"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_below="@+id/buttonAssemble"
+        android:background="@drawable/backwithborder"
+        android:gravity="top"
+        android:hint="@string/codeArea"
+        android:inputType="textMultiLine"
+        android:lines="20"
+        android:scrollHorizontally="true"
+        android:scrollbars="vertical"
+        android:singleLine="false"
+        android:textSize="12sp" />
 
-	</Button>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/EditTextCode"
+        android:orientation="vertical" >
 
-	<Button
-		android:id="@+id/buttonHexdump"
-		android:layout_width="80dp"
-		android:layout_height="40dp"
-		android:layout_toEndOf="@+id/buttonReset"
-		android:layout_toRightOf="@+id/buttonReset"
-		android:text="@string/buttonHexdump"
-		android:textSize="12sp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/backwithborder"
+            android:orientation="vertical" >
 
-	</Button>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal" >
 
-	<EditText
-		android:id="@+id/EditTextCode"
-		android:layout_width="160dp"
-		android:layout_height="160dp"
-		android:layout_below="@+id/buttonAssemble"
-		android:background="@drawable/backwithborder"
-		android:gravity="top"
-		android:hint="@string/codeArea"
-		android:inputType="textMultiLine"
-		android:lines="20"
-		android:scrollHorizontally="true"
-		android:scrollbars="vertical"
-		android:singleLine="false"
-		android:textSize="12sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="A="
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="12sp" />
 
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:layout_below="@id/EditTextCode"
-		android:orientation="vertical">
+                <EditText
+                    android:id="@+id/EditTextA"
+                    android:layout_width="35dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/backwithborder"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="#F40000"
+                    android:textColorHighlight="#CCF800"
+                    android:textSize="12sp" />
 
-		<LinearLayout
-			android:layout_height="wrap_content"
-			android:background="@drawable/backwithborder"
-			android:layout_width="match_parent"
-			android:orientation="vertical">
-			
-			
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="10dp"
-			android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="X="
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="12sp" />
 
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="match_parent"
-				android:gravity="center"
-				android:text="A="
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:textSize="12sp"/>
+                <EditText
+                    android:id="@+id/EditTextX"
+                    android:layout_width="35dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/backwithborder"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="#F40000"
+                    android:textSize="12sp" />
 
-			<EditText
-				android:id="@+id/EditTextA"
-				android:layout_width="35dp"
-				android:layout_height="wrap_content"
-				android:background="@drawable/backwithborder"
-				android:ems="10"
-				android:singleLine="true"
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:textColor="#F40000"
-				android:textSize="12sp"
-				android:gravity="center"
-				android:textColorHighlight="#CCF800"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Y="
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="12sp" />
 
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="match_parent"
-				android:gravity="center"
-				android:text="X="
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:textSize="12sp"/>
+                <EditText
+                    android:id="@+id/EditTextY"
+                    android:layout_width="35dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/backwithborder"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="#F40000"
+                    android:textSize="12sp" />
 
-			<EditText
-				android:id="@+id/EditTextX"
-				android:layout_width="35dp"
-				android:layout_height="wrap_content"
-				android:background="@drawable/backwithborder"
-				android:ems="10"
-				android:singleLine="true"
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:textColor="#F40000"
-				android:textSize="12sp"
-				android:gravity="center"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="SP="
+                    android:textSize="12sp" />
 
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="match_parent"
-				android:gravity="center"
-				android:text="Y="
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:textSize="12sp"/>
+                <EditText
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/backwithborder"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="0xff"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="#06F000"
+                    android:textSize="12sp" />
 
-			<EditText
-				android:id="@+id/EditTextY"
-				android:layout_width="35dp"
-				android:layout_height="wrap_content"
-				android:background="@drawable/backwithborder"
-				android:ems="10"
-				android:singleLine="true"
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:textColor="#F40000"
-				android:textSize="12sp"
-				android:gravity="center"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="PC="
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="12sp" />
 
-			<TextView
-				android:layout_height="match_parent"
-				android:text="SP="
-				android:layout_width="wrap_content"
-				android:gravity="center"
-				android:textSize="12sp"/>
+                <EditText
+                    android:id="@+id/EditTextPC"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/backwithborder"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="0x600"
+                    android:singleLine="true"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="#06FF00"
+                    android:textSize="12sp" />
+            </LinearLayout>
 
-			<EditText
-				android:layout_height="wrap_content"
-				android:ems="10"
-				android:layout_width="50dp"
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:textSize="12sp"
-				android:hint="0xff"
-				android:background="@drawable/backwithborder"
-				android:textColor="#06F000"
-				android:gravity="center"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal" >
 
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="match_parent"
-				android:gravity="center"
-				android:text="PC="
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:textSize="12sp"/>
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Flag"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
 
-			<EditText
-				android:id="@+id/EditTextPC"
-				android:layout_width="60dp"
-				android:layout_height="wrap_content"
-				android:background="@drawable/backwithborder"
-				android:ems="10"
-				android:singleLine="true"
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:textColor="#06FF00"
-				android:textSize="12sp"
-				android:hint="0x600"
-				android:gravity="center"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="N"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="12sp" />
 
-		</LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="V"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="12sp" />
 
-		<LinearLayout
-			android:layout_height="wrap_content"
-			android:layout_width="match_parent"
-			android:orientation="horizontal"
-			android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="-"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
 
-			<TextView
-				android:layout_height="wrap_content"
-				android:text="Flag"
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:layout_width="40dp"
-				android:textStyle="bold"
-				android:gravity="center"
-				android:textSize="12sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="B"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="12sp" />
 
-			<TextView
-				android:layout_height="wrap_content"
-				android:text="N"
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:layout_width="wrap_content"
-				android:gravity="center"
-				android:layout_marginLeft="5dp"
-				android:textSize="12sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="D"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="12sp" />
 
-			<TextView
-				android:layout_height="wrap_content"
-				android:text="V"
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:layout_width="wrap_content"
-				android:gravity="center"
-				android:layout_marginLeft="5dp"
-				android:textSize="12sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="I"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="12sp" />
 
-			<TextView
-				android:layout_height="wrap_content"
-				android:text="-"
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:layout_width="wrap_content"
-				android:gravity="center"
-				android:layout_marginLeft="5dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="Z"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="12sp" />
 
-			<TextView
-				android:layout_height="wrap_content"
-				android:text="B"
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:layout_width="wrap_content"
-				android:gravity="center"
-				android:layout_marginLeft="5dp"
-				android:textSize="12sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="C"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="12sp" />
+            </LinearLayout>
 
-			<TextView
-				android:layout_height="wrap_content"
-				android:text="D"
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:layout_width="wrap_content"
-				android:gravity="center"
-				android:layout_marginLeft="5dp"
-				android:textSize="12sp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal" >
 
-			<TextView
-				android:layout_height="wrap_content"
-				android:text="I"
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:layout_width="wrap_content"
-				android:gravity="center"
-				android:layout_marginLeft="5dp"
-				android:textSize="12sp"/>
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Value"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
 
-			<TextView
-				android:layout_height="wrap_content"
-				android:text="Z"
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:layout_width="wrap_content"
-				android:gravity="center"
-				android:layout_marginLeft="5dp"
-				android:textSize="12sp"/>
+                <TextView
+                    android:id="@+id/TextViewN"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="12sp" />
 
-			<TextView
-				android:layout_height="wrap_content"
-				android:text="C"
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:layout_width="wrap_content"
-				android:gravity="center"
-				android:layout_marginLeft="5dp"
-				android:textSize="12sp"/>
+                <TextView
+                    android:id="@+id/TextViewV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textSize="12sp" />
 
-		</LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="12sp" />
 
-		<LinearLayout
-			android:layout_height="wrap_content"
-			android:layout_width="match_parent"
-			android:orientation="horizontal"
-			android:gravity="center_horizontal">
+                <TextView
+                    android:id="@+id/TextViewB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="12sp" />
 
-			<TextView
-				android:layout_height="wrap_content"
-				android:text="Value"
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:layout_width="40dp"
-				android:textStyle="bold"
-				android:gravity="center"
-				android:textSize="12sp"/>
+                <TextView
+                    android:id="@+id/TextViewD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="12sp" />
 
-			<TextView
-				android:layout_height="wrap_content"
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:layout_width="wrap_content"
-				android:text="0"
-				android:gravity="center"
-				android:layout_marginLeft="5dp"
-				android:textSize="12sp"
-				android:id="@+id/TextViewN"/>
+                <TextView
+                    android:id="@+id/TextViewI"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="12sp" />
 
-			<TextView
-				android:layout_height="wrap_content"
-				android:text="0"
-				android:layout_width="wrap_content"
-				android:gravity="center"
-				android:layout_marginLeft="5dp"
-				android:textSize="12sp"
-				android:id="@+id/TextViewV"/>
+                <TextView
+                    android:id="@+id/TextViewZ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="12sp" />
 
-			<TextView
-				android:layout_height="wrap_content"
-				android:text="0"
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:layout_width="wrap_content"
-				android:gravity="center"
-				android:layout_marginLeft="5dp"
-				android:textSize="12sp"/>
+                <TextView
+                    android:id="@+id/TextViewC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
 
-			<TextView
-				android:layout_height="wrap_content"
-				android:text="0"
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:layout_width="wrap_content"
-				android:gravity="center"
-				android:layout_marginLeft="5dp"
-				android:textSize="12sp"
-				android:id="@+id/TextViewB"/>
+        <TextView
+            android:id="@+id/TextViewInfo"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_below="@id/EditTextCode"
+            android:layout_marginTop="10dp"
+            android:background="#CCCCCC"
+            android:fontFamily="sans-serif"
+            android:gravity="top"
+            android:hint="Display important information"
+            android:scrollHorizontally="false"
+            android:scrollbars="vertical"
+            android:singleLine="false"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#000000"
+            android:textSize="11sp"
+            android:typeface="monospace" />
 
-			<TextView
-				android:layout_height="wrap_content"
-				android:text="0"
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:layout_width="wrap_content"
-				android:gravity="center"
-				android:layout_marginLeft="5dp"
-				android:textSize="12sp"
-				android:id="@+id/TextViewD"/>
+        <CheckBox
+            android:id="@+id/checkBoxDebug"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/checkBoxDebug"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
 
-			<TextView
-				android:layout_height="wrap_content"
-				android:text="0"
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:layout_width="wrap_content"
-				android:gravity="center"
-				android:layout_marginLeft="5dp"
-				android:textSize="12sp"
-				android:id="@+id/TextViewI"/>
-
-			<TextView
-				android:layout_height="wrap_content"
-				android:text="0"
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:layout_width="wrap_content"
-				android:gravity="center"
-				android:layout_marginLeft="5dp"
-				android:textSize="12sp"
-				android:id="@+id/TextViewZ"/>
-
-			<TextView
-				android:layout_height="wrap_content"
-				android:text="0"
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:layout_width="wrap_content"
-				android:gravity="center"
-				android:layout_marginLeft="5dp"
-				android:textSize="12sp"
-				android:id="@+id/TextViewC"/>
-
-		</LinearLayout>
-		
-			
-		</LinearLayout>
-		
-		
-		<TextView
-			android:id="@+id/TextViewInfo"
-			android:layout_width="match_parent"
-			android:layout_height="160dp"
-			android:layout_below="@id/EditTextCode"
-			android:layout_marginTop="10dp"
-			android:background="#CCCCCC"
-			android:fontFamily="sans-serif"
-			android:gravity="top"
-			android:scrollHorizontally="false"
-			android:scrollbars="vertical"
-			android:singleLine="false"
-			android:textAppearance="?android:attr/textAppearanceSmall"
-			android:textColor="#000000"
-			android:textSize="11sp"
-			android:typeface="monospace"
-			android:hint="Display important information"/>
-		
-		<CheckBox
-			android:id="@+id/checkBoxDebug"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:hint="@string/checkBoxDebug"
-			android:textAppearance="?android:attr/textAppearanceSmall"/>
-
-		<Button
-			android:id="@+id/buttonStep"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@string/buttonStep"
-			android:visibility="gone"/>
-		
-	</LinearLayout>
+        <Button
+            android:id="@+id/buttonStep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/buttonStep"
+            android:visibility="gone" />
+    </LinearLayout>
 
 </RelativeLayout>
-
