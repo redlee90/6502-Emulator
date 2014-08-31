@@ -21,6 +21,13 @@ public class Assembler {
 	private HashMap<String, String> BVC;
 	private HashMap<String, String> BVS;
 	private HashMap<String, String> BRK;
+	private HashMap<String, String> CLC;
+	private HashMap<String, String> CLD;
+	private HashMap<String, String> CLI;
+	private HashMap<String, String> CLV;
+	private HashMap<String, String> SEC;
+	private HashMap<String, String> SED;
+	private HashMap<String, String> SEI;	
 	private HashMap<String, String> DEX;
 	private HashMap<String, String> DEY;
 	private HashMap<String, Integer> LAB;
@@ -155,6 +162,48 @@ public class Assembler {
 
 			{
 				put("SNGL", "00");
+			}
+		};
+		
+		CLC = new HashMap<String, String>() {
+			{
+				put("SNGL","18");
+			}
+		};
+		
+		CLD = new HashMap<String, String>() {
+			{
+				put("SNGL","d8");
+			}
+		};
+		
+		CLI = new HashMap<String, String>() {
+			{
+				put("SNGL","58");
+			}
+		};
+		
+		CLV = new HashMap<String, String>() {
+			{
+				put("SNGL","b8");
+			}
+		};
+		
+		SEC = new HashMap<String, String>() {
+			{
+				put("SNGL","38");
+			}
+		};
+		
+		SED = new HashMap<String, String>() {
+			{
+				put("SNGL","f8");
+			}
+		};
+		
+		SEI = new HashMap<String, String>() {
+			{
+				put("SNGL","78");
 			}
 		};
 
@@ -807,9 +856,8 @@ public class Assembler {
 			if (!LAB.containsKey(label)) {
 				LAB.put(label, defaultPC);
 			} else {
-				int ABSAddr = LAB.get(label);
-				memory.cells[ABSAddr] = Integer.toHexString(defaultPC & 0xff);
-				memory.cells[ABSAddr + 1] = Integer.toHexString(defaultPC >> 8);
+				int offset = defaultPC-LAB.get(label);
+				memory.cells[LAB.get(label)] = Integer.toHexString(offset);
 			}
 
 		}
@@ -821,6 +869,22 @@ public class Assembler {
 			switch (command) {
 			case "BRK":
 				memory.cells[defaultPC++] = BRK.get("SNGL");
+				size += 1;
+				break;
+			case "CLC":
+				memory.cells[defaultPC++] = CLC.get("SNGL");
+				size += 1;
+				break;
+			case "CLD":
+				memory.cells[defaultPC++] = CLD.get("SNGL");
+				size += 1;
+				break;
+			case "CLI":
+				memory.cells[defaultPC++] = CLI.get("SNGL");
+				size += 1;
+				break;
+			case "CLV":
+				memory.cells[defaultPC++] = CLV.get("SNGL");
 				size += 1;
 				break;
 			case "DEX":
@@ -837,6 +901,18 @@ public class Assembler {
 				break;
 			case "INY":
 				memory.cells[defaultPC++] = INY.get("SNGL");
+				size += 1;
+				break;
+			case "SEC":
+				memory.cells[defaultPC++] = SEC.get("SNGL");
+				size += 1;
+				break;
+			case "SED":
+				memory.cells[defaultPC++] = SED.get("SNGL");
+				size += 1;
+				break;
+			case "SEI":
+				memory.cells[defaultPC++] = SEI.get("SNGL");
 				size += 1;
 				break;
 			case "TAX":
@@ -862,6 +938,7 @@ public class Assembler {
 			}
 		}
 
+		// BRA
 		else if (line.matches(patternBRA)) {
 			System.out.println(line + " matches BRA");
 			StringTokenizer st = new StringTokenizer(line.replaceAll(
@@ -872,114 +949,100 @@ public class Assembler {
 			case "BCC":
 				memory.cells[defaultPC++] = BCC.get("BRA");
 				if (LAB.containsKey(label)) {
-					int value = LAB.get(label);
+					int offset = defaultPC - LAB.get(label);
 					memory.cells[defaultPC++] = Integer
-							.toHexString(value & 0xff);
-					memory.cells[defaultPC++] = Integer.toHexString(value >> 8);
+							.toHexString(0x0100-offset);
 				} else {
 					LAB.put(label, defaultPC);
 					memory.cells[defaultPC++] = null;
-					memory.cells[defaultPC++] = null;
 				}
-				size += 3;
+				size += 2;
 				break;
 			case "BCS":
 				memory.cells[defaultPC++] = BCS.get("BRA");
 				if (LAB.containsKey(label)) {
-					int value = LAB.get(label);
+					int offset = defaultPC - LAB.get(label);
 					memory.cells[defaultPC++] = Integer
-							.toHexString(value & 0xff);
-					memory.cells[defaultPC++] = Integer.toHexString(value >> 8);
+							.toHexString(0x0100-offset);
 				} else {
 					LAB.put(label, defaultPC);
 					memory.cells[defaultPC++] = null;
-					memory.cells[defaultPC++] = null;
 				}
-				size += 3;
+				size += 2;
 				break;
 			case "BEQ":
 				memory.cells[defaultPC++] = BEQ.get("BRA");
 				if (LAB.containsKey(label)) {
-					int value = LAB.get(label);
+					int offset = defaultPC - LAB.get(label);
 					memory.cells[defaultPC++] = Integer
-							.toHexString(value & 0xff);
-					memory.cells[defaultPC++] = Integer.toHexString(value >> 8);
+							.toHexString(0x0100-offset);
 				} else {
 					LAB.put(label, defaultPC);
 					memory.cells[defaultPC++] = null;
-					memory.cells[defaultPC++] = null;
 				}
-				size += 3;
+				size += 2;
 				break;
 			case "BMI":
 				memory.cells[defaultPC++] = BMI.get("BRA");
 				if (LAB.containsKey(label)) {
-					int value = LAB.get(label);
+					int offset = defaultPC - LAB.get(label);
 					memory.cells[defaultPC++] = Integer
-							.toHexString(value & 0xff);
-					memory.cells[defaultPC++] = Integer.toHexString(value >> 8);
+							.toHexString(0x0100-offset);
 				} else {
 					LAB.put(label, defaultPC);
 					memory.cells[defaultPC++] = null;
-					memory.cells[defaultPC++] = null;
 				}
-				size += 3;
+				size += 2;
 				break;
 			case "BNE":
 				memory.cells[defaultPC++] = BNE.get("BRA");
 				if (LAB.containsKey(label)) {
-					int value = LAB.get(label);
+					int offset = defaultPC - LAB.get(label);
 					memory.cells[defaultPC++] = Integer
-							.toHexString(value & 0xff);
-					memory.cells[defaultPC++] = Integer.toHexString(value >> 8);
+							.toHexString(0x0100-offset);
 				} else {
 					LAB.put(label, defaultPC);
 					memory.cells[defaultPC++] = null;
-					memory.cells[defaultPC++] = null;
 				}
-				size += 3;
+				size += 2;
 				break;
 			case "BPL":
 				memory.cells[defaultPC++] = BPL.get("BRA");
 				if (LAB.containsKey(label)) {
-					int value = LAB.get(label);
+					int offset = defaultPC - LAB.get(label);
 					memory.cells[defaultPC++] = Integer
-							.toHexString(value & 0xff);
-					memory.cells[defaultPC++] = Integer.toHexString(value >> 8);
+							.toHexString(0x0100-offset);
 				} else {
 					LAB.put(label, defaultPC);
 					memory.cells[defaultPC++] = null;
-					memory.cells[defaultPC++] = null;
 				}
-				size += 3;
+				size += 2;
 				break;
 			case "BVC":
 				memory.cells[defaultPC++] = BVC.get("BRA");
 				if (LAB.containsKey(label)) {
-					int value = LAB.get(label);
+					int offset = defaultPC - LAB.get(label);
 					memory.cells[defaultPC++] = Integer
-							.toHexString(value & 0xff);
-					memory.cells[defaultPC++] = Integer.toHexString(value >> 8);
+							.toHexString(0x0100-offset);
 				} else {
 					LAB.put(label, defaultPC);
 					memory.cells[defaultPC++] = null;
-					memory.cells[defaultPC++] = null;
 				}
-				size += 3;
+				size += 2;
 				break;
 			case "BVS":
 				memory.cells[defaultPC++] = BVS.get("BRA");
 				if (LAB.containsKey(label)) {
-					int value = LAB.get(label);
+					int offset = defaultPC - LAB.get(label);
 					memory.cells[defaultPC++] = Integer
-							.toHexString(value & 0xff);
-					memory.cells[defaultPC++] = Integer.toHexString(value >> 8);
+							.toHexString(0x0100-offset);
 				} else {
 					LAB.put(label, defaultPC);
 					memory.cells[defaultPC++] = null;
-					memory.cells[defaultPC++] = null;
 				}
-				size += 3;
+				size += 2;
+				break;
+			default:
 				break;
 			}
 		}
