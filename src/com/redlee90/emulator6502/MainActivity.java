@@ -269,12 +269,6 @@ public class MainActivity extends Activity {
 					.show();
 
 			return true;
-		case R.id.menu_open:
-
-			return true;
-		case R.id.menu_save:
-
-			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}

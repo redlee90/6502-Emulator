@@ -45,10 +45,7 @@ public final class R {
         public static final int buttonRun=0x7f080002;
         public static final int buttonStep=0x7f080014;
         public static final int checkBoxDebug=0x7f080013;
-        public static final int menu_file=0x7f080016;
         public static final int menu_help=0x7f080015;
-        public static final int menu_open=0x7f080018;
-        public static final int menu_save=0x7f080017;
         public static final int relativeLayout=0x7f080000;
     }
     public static final class layout {
