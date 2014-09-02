@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.View;
-import java.util.logging.*;
 
 public class PPU extends View {
 
@@ -35,8 +34,8 @@ public class PPU extends View {
 		
 		for (int i=0;i<=0x3ff;i++) {
 			int location = 0x200+i;
-			if (memory.cells[location]!=null) {
-				int color = Integer.parseInt(memory.cells[location],16);
+			if (memory.cells[location] > -1) {
+				int color = memory.cells[location];
 				drawDot(canvas,location,color,paint);
 			}
 		}

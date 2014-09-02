@@ -6,12 +6,9 @@ import android.graphics.*;
 import android.net.*;
 import android.os.*;
 import android.view.*;
-import android.view.View.*;
 import android.widget.*;
 import android.widget.CompoundButton.*;
 import com.redlee90.Emulator.*;
-import java.io.*;
-
 import android.view.View.OnClickListener;
 
 public class MainActivity extends Activity {
@@ -144,11 +141,12 @@ public class MainActivity extends Activity {
 								+ Integer.toHexString(0x600 + i) + ":  ");
 					}
 
-					if (memory.cells[0x600 + i].length() == 1) {
+					if (Integer.toHexString(memory.cells[0x600 + i]).length() == 1) {
 						textViewInfo.append("0" + memory.cells[0x600 + i]
 								+ "  ");
 					} else {
-						textViewInfo.append(memory.cells[0x600 + i] + "  ");
+						textViewInfo.append(Integer
+								.toHexString(memory.cells[0x600 + i]) + "  ");
 					}
 
 					if (i % 16 == 15) {
@@ -185,52 +183,66 @@ public class MainActivity extends Activity {
 
 	}
 
-	public static void showTextViewA(String message) {
-		textViewA.setText(message);
+	public static void showTextViewA(int regA) {
+		textViewA.setText(Integer.toHexString(regA));
 	}
 
-	public static void showTextViewX(String message) {
-		textViewX.setText(message);
+	public static void showTextViewX(int regX) {
+		textViewX.setText(Integer.toHexString(regX));
 	}
 
-	public static void showTextViewY(String message) {
-		textViewY.setText(message);
+	public static void showTextViewY(int regY) {
+		textViewY.setText(Integer.toHexString(regY));
 	}
 
-	public static void showTextViewPC(String message) {
-		textViewPC.setText(message);
+	public static void showTextViewSP(int regSP) {
+		textViewSP.setText(Integer.toHexString(regSP));
+	}
+
+	public static void showTextViewPC(int regPC) {
+		textViewPC.setText("0x" + Integer.toHexString(regPC));
 	}
 
 	public static void showTextViewInfo(String message) {
 		textViewInfo.setText(message);
 	}
 
-	public static void showTextViewN(int regP) {
+	private static void showTextViewN(int regP) {
 		textViewN.setText(Integer.toBinaryString(regP).substring(0, 1));
 	}
 
-	public static void showTextViewV(int regP) {
+	private static void showTextViewV(int regP) {
 		textViewV.setText(Integer.toBinaryString(regP).substring(1, 2));
 	}
 
-	public static void showTextViewB(int regP) {
+	private static void showTextViewB(int regP) {
 		textViewB.setText(Integer.toBinaryString(regP).substring(3, 4));
 	}
 
-	public static void showTextViewD(int regP) {
+	private static void showTextViewD(int regP) {
 		textViewD.setText(Integer.toBinaryString(regP).substring(4, 5));
 	}
 
-	public static void showTextViewI(int regP) {
+	private static void showTextViewI(int regP) {
 		textViewI.setText(Integer.toBinaryString(regP).substring(5, 6));
 	}
 
-	public static void showTextViewZ(int regP) {
+	private static void showTextViewZ(int regP) {
 		textViewZ.setText(Integer.toBinaryString(regP).substring(6, 7));
 	}
 
-	public static void showTextViewC(int regP) {
+	private static void showTextViewC(int regP) {
 		textViewC.setText(Integer.toBinaryString(regP).substring(7, 8));
+	}
+
+	public static void showTextViewP(int regP) {
+		showTextViewN(regP);
+		showTextViewV(regP);
+		showTextViewB(regP);
+		showTextViewD(regP);
+		showTextViewI(regP);
+		showTextViewZ(regP);
+		showTextViewC(regP);
 	}
 
 	@Override

@@ -317,7 +317,7 @@
 					android:layout_height="wrap_content"
 					android:layout_marginLeft="5dp"
 					android:gravity="center"
-					android:text="0"
+					android:text="1"
 					android:textAppearance="?android:attr/textAppearanceSmall"
 					android:textSize="12sp"/>
 
@@ -327,7 +327,7 @@
 					android:layout_height="wrap_content"
 					android:layout_marginLeft="5dp"
 					android:gravity="center"
-					android:text="0"
+					android:text="1"
 					android:textAppearance="?android:attr/textAppearanceSmall"
 					android:textSize="12sp"/>
 
