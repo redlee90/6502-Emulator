@@ -3,7 +3,7 @@ package com.redlee90.emulator6502;
 import java.util.Arrays;
 
 public class Memory {
-	public int cells[];
+	private int cells[];
 
 	public Memory() {
 		this.cells = new int[0xffff];
@@ -19,7 +19,7 @@ public class Memory {
 	}
 	
 	public int getWord(int addr) {
-		return this.cells[addr] + this.cells[addr+1]<<8;
+		return this.cells[addr] + (this.cells[addr+1]<<8);
 	}
 	
 	public void setByte(int addr, int value) {

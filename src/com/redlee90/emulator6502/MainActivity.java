@@ -68,6 +68,7 @@ public class MainActivity extends Activity {
 		textViewA = (TextView) findViewById(R.id.TextViewA);
 		textViewX = (TextView) findViewById(R.id.TextViewX);
 		textViewY = (TextView) findViewById(R.id.TextViewY);
+		textViewSP = (TextView) findViewById(R.id.TextViewSP);
 		textViewPC = (TextView) findViewById(R.id.TextViewPC);
 
 		checkBoxDebug = (CheckBox) findViewById(R.id.checkBoxDebug);
@@ -122,7 +123,8 @@ public class MainActivity extends Activity {
 				textViewA.setText("");
 				textViewX.setText("");
 				textViewY.setText("");
-				textViewPC.setText("");
+				textViewSP.setText("0x1ff");
+				textViewPC.setText("0x600");
 				textViewInfo.setText("Reset successfully");
 			}
 
@@ -141,12 +143,12 @@ public class MainActivity extends Activity {
 								+ Integer.toHexString(0x600 + i) + ":  ");
 					}
 
-					if (Integer.toHexString(memory.cells[0x600 + i]).length() == 1) {
-						textViewInfo.append("0" + memory.cells[0x600 + i]
+					if (Integer.toHexString(memory.getByte(0x600 + i)).length() == 1) {
+						textViewInfo.append("0" + memory.getByte(0x600 + i)
 								+ "  ");
 					} else {
 						textViewInfo.append(Integer
-								.toHexString(memory.cells[0x600 + i]) + "  ");
+								.toHexString(memory.getByte(0x600+i)) + "  ");
 					}
 
 					if (i % 16 == 15) {
@@ -196,7 +198,7 @@ public class MainActivity extends Activity {
 	}
 
 	public static void showTextViewSP(int regSP) {
-		textViewSP.setText(Integer.toHexString(regSP));
+		textViewSP.setText("0x" + Integer.toHexString(regSP));
 	}
 
 	public static void showTextViewPC(int regPC) {
@@ -208,31 +210,31 @@ public class MainActivity extends Activity {
 	}
 
 	private static void showTextViewN(int regP) {
-		textViewN.setText(Integer.toBinaryString(regP).substring(0, 1));
+		textViewN.setText(""+((regP>>7)&1));
 	}
 
 	private static void showTextViewV(int regP) {
-		textViewV.setText(Integer.toBinaryString(regP).substring(1, 2));
+		textViewV.setText(""+((regP>>6)&1));
 	}
 
 	private static void showTextViewB(int regP) {
-		textViewB.setText(Integer.toBinaryString(regP).substring(3, 4));
+		textViewB.setText(""+((regP>>4)&1));
 	}
 
 	private static void showTextViewD(int regP) {
-		textViewD.setText(Integer.toBinaryString(regP).substring(4, 5));
+		textViewD.setText(""+((regP>>3)&1));
 	}
 
 	private static void showTextViewI(int regP) {
-		textViewI.setText(Integer.toBinaryString(regP).substring(5, 6));
+		textViewI.setText(""+((regP>>2)&1));
 	}
 
 	private static void showTextViewZ(int regP) {
-		textViewZ.setText(Integer.toBinaryString(regP).substring(6, 7));
+		textViewZ.setText(""+((regP>>1)&1));
 	}
 
 	private static void showTextViewC(int regP) {
-		textViewC.setText(Integer.toBinaryString(regP).substring(7, 8));
+		textViewC.setText(""+(regP&1));
 	}
 
 	public static void showTextViewP(int regP) {

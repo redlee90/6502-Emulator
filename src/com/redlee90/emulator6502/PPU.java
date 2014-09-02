@@ -34,8 +34,8 @@ public class PPU extends View {
 		
 		for (int i=0;i<=0x3ff;i++) {
 			int location = 0x200+i;
-			if (memory.cells[location] > -1) {
-				int color = memory.cells[location];
+			if (memory.getByte(location) > -1) {
+				int color = memory.getByte(location);
 				drawDot(canvas,location,color,paint);
 			}
 		}
