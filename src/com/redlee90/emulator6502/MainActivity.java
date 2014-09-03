@@ -120,9 +120,10 @@ public class MainActivity extends Activity {
 				assembler.reset();
 				vm.reset();
 				ppu.invalidate();
-				textViewA.setText("");
-				textViewX.setText("");
-				textViewY.setText("");
+				textViewA.setText("0");
+				textViewX.setText("0");
+				textViewY.setText("0");
+				showTextViewP(0x30);
 				textViewSP.setText("0x1ff");
 				textViewPC.setText("0x600");
 				textViewInfo.setText("Reset successfully");
