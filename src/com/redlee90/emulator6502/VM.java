@@ -891,16 +891,20 @@ public class VM {
 	}
 
 	public void runAll() {
+		reset();
 		while (memory.getByte(regPC) > -1 && codeRunning) {
 			runStep();
 		}
 	}
 
 	public void reset() {
-		regA = 0;
-		regX = 0;
-		regY = 0;
+		regA = 0x0;
+		regX = 0x0;
+		regY = 0x0;
+		regP = 0x30;
+		regSP = 0x1ff;
 		regPC = 0x600;
+		codeRunning = true;
 	}
 
 	private int popWord() {
