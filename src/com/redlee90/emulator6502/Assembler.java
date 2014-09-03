@@ -792,8 +792,8 @@ public class Assembler {
 		String lines[] = code.split("\\r?\\n");
 
 		for (int i = 0; i < lines.length; i++) {
-			System.out.println("the " + i + "th line is " + "^" + lines[i]
-					+ "$");
+			// // System.out.println("the " + i + "th line is " + "^" + lines[i]
+					//+ "$");
 			assembleLine(lines[i]);
 		}
 	}
@@ -812,10 +812,11 @@ public class Assembler {
 		String patternLAB = "(\\s*)(\\w+)(\\s*)(:)($|\\s*;.*)";
 		String patternSNGL = "(\\s*)(\\w{3})($|\\s*;.*)";
 		String patternBRA = "(\\s*)(\\w{3})(\\s+)(\\w+)($|\\s*;.*)";
+		String patternEmpty = "\\s*$";
 
 		// Imm
 		if (line.matches(patternImm)) {
-			System.out.println(line + " matches Imm");
+			// // System.out.println(line + " matches Imm");
 			StringTokenizer st = new StringTokenizer(line.replaceAll(
 					patternImm, "$2 $5"));
 			String command = st.nextToken();
@@ -886,7 +887,7 @@ public class Assembler {
 
 		// ZP
 		else if (line.matches(patternZP)) {
-			System.out.println(line + " matches ZP");
+			// // System.out.println(line + " matches ZP");
 			StringTokenizer st = new StringTokenizer(line.replaceAll(patternZP,
 					"$2 $5"));
 			String command = st.nextToken();
@@ -1000,7 +1001,7 @@ public class Assembler {
 
 		// ZPX
 		else if (line.matches(patternZPX)) {
-			System.out.println(line + " matches ZPX");
+			// // System.out.println(line + " matches ZPX");
 			StringTokenizer st = new StringTokenizer(line.replaceAll(
 					patternZPX, "$2 $5"));
 			String command = st.nextToken();
@@ -1095,7 +1096,7 @@ public class Assembler {
 
 		// ZPY
 		else if (line.matches(patternZPY)) {
-			System.out.println(line + " matches ZPY");
+			// // System.out.println(line + " matches ZPY");
 			StringTokenizer st = new StringTokenizer(line.replaceAll(
 					patternZPY, "$2 $5"));
 			String command = st.nextToken();
@@ -1120,7 +1121,7 @@ public class Assembler {
 
 		// ABS
 		else if (line.matches(patternABS)) {
-			System.out.println(line + " matches ABS");
+			// System.out.println(line + " matches ABS");
 			StringTokenizer st = new StringTokenizer(line.replaceAll(
 					patternABS, "$2 $5"));
 			String command = st.nextToken();
@@ -1266,7 +1267,7 @@ public class Assembler {
 
 		// ABSX
 		else if (line.matches(patternABSX)) {
-			System.out.println(line + " matches ABSX");
+			// System.out.println(line + " matches ABSX");
 			StringTokenizer st = new StringTokenizer(line.replaceAll(
 					patternABSX, "$2 $5"));
 			String command = st.nextToken();
@@ -1371,7 +1372,7 @@ public class Assembler {
 
 		// ABSY
 		else if (line.matches(patternABSY)) {
-			System.out.println(line + " matches ABSY");
+			// System.out.println(line + " matches ABSY");
 			StringTokenizer st = new StringTokenizer(line.replaceAll(
 					patternABSY, "$2 $5"));
 			String command = st.nextToken();
@@ -1440,7 +1441,7 @@ public class Assembler {
 
 		// IND
 		else if (line.matches(patternIND)) {
-			System.out.println(line + " matches IND");
+			// System.out.println(line + " matches IND");
 			StringTokenizer st = new StringTokenizer(line.replaceAll(
 					patternIND, "$2 $6"));
 			String command = st.nextToken();
@@ -1459,7 +1460,7 @@ public class Assembler {
 
 		// INDX
 		else if (line.matches(patternINDX)) {
-			System.out.println(line + " matches INDX");
+			// System.out.println(line + " matches INDX");
 			StringTokenizer st = new StringTokenizer(line.replaceAll(
 					patternINDX, "$2 $6"));
 			String command = st.nextToken();
@@ -1513,7 +1514,7 @@ public class Assembler {
 
 		// INDY
 		else if (line.matches(patternINDY)) {
-			System.out.println(line + " matches INDY");
+			// System.out.println(line + " matches INDY");
 			StringTokenizer st = new StringTokenizer(line.replaceAll(
 					patternINDY, "$2 $6"));
 			String command = st.nextToken();
@@ -1567,7 +1568,7 @@ public class Assembler {
 
 		// LAB
 		else if (line.matches(patternLAB)) {
-			System.out.println(line + " matches LAB");
+			// System.out.println(line + " matches LAB");
 			String label = line.replaceAll(patternLAB, "$2");
 			if (!LAB.containsKey(label)) {
 				LAB.put(label, defaultPC);
@@ -1580,7 +1581,7 @@ public class Assembler {
 
 		// SNGL
 		else if (line.matches(patternSNGL)) {
-			System.out.println(line + " matches SNGL");
+			// System.out.println(line + " matches SNGL");
 			String command = line.replaceAll(patternSNGL, "$2");
 			switch (command) {
 			case "ASL":
@@ -1708,7 +1709,7 @@ public class Assembler {
 
 		// BRA
 		else if (line.matches(patternBRA)) {
-			System.out.println(line + " matches BRA");
+			// System.out.println(line + " matches BRA");
 			StringTokenizer st = new StringTokenizer(line.replaceAll(
 					patternINDY, "$2 $4"));
 			String command = st.nextToken();
@@ -1808,8 +1809,12 @@ public class Assembler {
 		}
 
 		// Syntax error
+		else if (line.matches(patternEmpty)){
+			// do nothing	
+		}
 		else {
 			this.assembleOK = false;
+			MainActivity.showTextViewInfo("Assemble failed");
 		}
 	}
 }
